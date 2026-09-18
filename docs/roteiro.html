@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Roteiro de Apresentação</title>
+<style>
+  @page { size: A4; margin: 16mm 15mm 16mm 15mm; }
+  :root { --ink:#0F172A; --muted:#475569; --line:#E2E8F0; --blue:#2563EB; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Inter, Arial, sans-serif; color: var(--ink); font-size: 10.4pt; line-height: 1.5; margin: 0; }
+  h1 { font-size: 26pt; margin: 0 0 4mm; letter-spacing: -.02em; line-height: 1.1; }
+  h2 { font-size: 15pt; margin: 8mm 0 3mm; padding-bottom: 2mm; border-bottom: 2px solid var(--c, var(--blue)); color: var(--c, var(--blue)); break-after: avoid; }
+  h3 { font-size: 11.5pt; margin: 0; }
+  p { margin: 1.6mm 0; }
+  ul { margin: 1.2mm 0; padding-left: 5mm; }
+  li { margin: .8mm 0; }
+  .muted { color: var(--muted); }
+  .cover { height: 250mm; display: flex; flex-direction: column; justify-content: center; }
+  .cover .kick { font-size: 9pt; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); }
+  .cover .sub { font-size: 13pt; color: var(--muted); max-width: 150mm; }
+  .team { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; margin-top: 10mm; max-width: 150mm; }
+  .team div { border: 1px solid var(--line); border-left: 4px solid var(--c); border-radius: 3mm; padding: 3mm 4mm; }
+  .team b { display: block; }
+  .page-break { break-before: page; }
+  table { width: 100%; border-collapse: collapse; font-size: 9.6pt; margin: 2mm 0; }
+  th { text-align: left; background: #F1F5F9; padding: 2mm; font-size: 8.6pt; text-transform: uppercase; letter-spacing: .04em; }
+  td { padding: 2mm; border-top: 1px solid var(--line); vertical-align: top; }
+  .slide { border: 1px solid var(--line); border-radius: 3mm; padding: 3.5mm 4.5mm; margin: 3.5mm 0; break-inside: avoid; border-left: 5px solid var(--c, var(--blue)); }
+  .slide-head { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; margin-bottom: 1.5mm; }
+  .who { font-size: 8.6pt; font-weight: 800; padding: .6mm 2.4mm; border-radius: 99px; color: #fff; background: var(--pc, #334155); white-space: nowrap; }
+  .num { color: var(--c, var(--blue)); font-weight: 900; margin-right: 1.5mm; }
+  .tag { font-size: 8pt; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: 2.2mm; }
+  .fala { background: #F8FAFC; border-radius: 2mm; padding: 1.5mm 3.5mm; font-style: normal; }
+  .fala p::before { content: "“"; color: #94A3B8; }
+  .fala p::after { content: "”"; color: #94A3B8; }
+  .acao { color: #1D4ED8; font-weight: 600; }
+  .resp { color: #047857; }
+  .trans { font-size: 9.4pt; color: var(--muted); margin-top: 1.8mm; border-top: 1px dashed var(--line); padding-top: 1.5mm; }
+  .box { border: 1px solid var(--line); border-radius: 3mm; padding: 3mm 4mm; margin: 3mm 0; break-inside: avoid; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+  .kbd { font-family: Consolas, monospace; border: 1px solid #CBD5E1; border-bottom-width: 2px; border-radius: 1mm; padding: 0 1.4mm; font-size: 8.8pt; background: #F8FAFC; }
+  .A { --pc:#2563EB; } .D { --pc:#0284C7; } .G { --pc:#4F46E5; } .V { --pc:#0D9488; } .T { --pc:#0F172A; }
+</style>
+</head>
+<body>
+
+<!-- ================= CAPA ================= -->
+<section class="cover">
+  <div class="kick">Seminário · Tópicos Avançados em Ciência da Computação</div>
+  <h1 style="margin-top:4mm">Roteiro de Apresentação<br><span style="color:#2563EB">Revisão de Cibersegurança, Normas e Padrões</span></h1>
+  <p class="sub">Falas sugeridas, interações com a turma e ações na tela, slide a slide, para cada integrante da equipe.</p>
+  <div class="team">
+    <div style="--c:#2563EB"><b>Arthur Oliveira Santos</b><span class="muted">Bloco 1 · Fundamentos · PQC</span></div>
+    <div style="--c:#0284C7"><b>Diego Pereira Maia</b><span class="muted">Bloco 2 · Frameworks · Notícias</span></div>
+    <div style="--c:#4F46E5"><b>Gabriela Lacerda Muniz</b><span class="muted">Bloco 3 · Privacidade · Artigos</span></div>
+    <div style="--c:#0D9488"><b>Vinícius Goddart</b><span class="muted">Bloco 4 · IA · Questões</span></div>
+  </div>
+  <p class="muted" style="margin-top:12mm">39 slides · duração planejada de cerca de 107 minutos (mínimo exigido: 80). As falas são sugestões: usem as próprias palavras, mas mantenham as ideias centrais e as interações.</p>
+</section>
+
+<!-- ================= VISÃO GERAL ================= -->
+<section class="page-break">
+  <h2>Divisão de responsabilidades</h2>
+  <table>
+    <tr><th>Integrante</th><th>Slides em que fala</th><th>Tempo aprox.</th></tr>
+    <tr><td><b>Arthur</b></td><td>1–2 (abertura), 3–8 (Bloco 1), 26 (PQC), 30 (Questão 1), 36 (conduz a síntese), 39 (abre e fecha o Q&amp;A)</td><td>~33 min</td></tr>
+    <tr><td><b>Diego</b></td><td>9–14 (Bloco 2), 27 (Notícias), 32 (Questão 3), 37 (Checklist)</td><td>~25 min</td></tr>
+    <tr><td><b>Gabriela</b></td><td>15–20 (Bloco 3), 28 (Artigos), 33 (Questão 4), 38 (conduz a votação da Mesa de Crise)</td><td>~25 min</td></tr>
+    <tr><td><b>Vinícius</b></td><td>21–25 (Bloco 4), 29 (regras das questões), 31 (Questão 2), 34 (Questão 5), 35 (Bônus), 38 (narra a Mesa de Crise)</td><td>~26 min</td></tr>
+  </table>
+  <p class="muted">Tempos por bloco: Abertura + Bloco 1 ≈ 22 min · Bloco 2 ≈ 17,5 · Bloco 3 ≈ 15 · Bloco 4 ≈ 12 · Complementos ≈ 11 · Questões ≈ 17,5 · Encerramento ≈ 12.</p>
+
+  <h2>Como operar a apresentação</h2>
+  <div class="grid2">
+    <div class="box">
+      <h3>Atalhos</h3>
+      <ul>
+        <li><span class="kbd">→</span> ou <span class="kbd">Espaço</span>: próximo · <span class="kbd">←</span>: anterior</li>
+        <li><span class="kbd">G</span>: ir para um slide (digite o número e Enter)</li>
+        <li><span class="kbd">N</span>: notas do apresentador (tempo de cada slide)</li>
+        <li><span class="kbd">O</span>: visão geral · <span class="kbd">F</span>: tela cheia</li>
+        <li><span class="kbd">T</span>: inicia/pausa o cronômetro da questão</li>
+        <li><span class="kbd">H</span>: ajuda, chance da imagem surpresa e botão de teste</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Dinâmica</h3>
+      <ul>
+        <li>Quem está falando também passa os slides. Na troca de bloco, a próxima pessoa assume o teclado.</li>
+        <li>O cronômetro geral fica na barra inferior: iniciem no slide 1.</li>
+        <li>Se aparecer a <b>imagem surpresa</b>, reajam com leveza ("o sistema foi invadido!") e apertem Continuar.</li>
+        <li>Se recarregar a página, a apresentação volta no mesmo slide.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="box">
+    <h3>Checklist antes de começar</h3>
+    <ul>
+      <li>Testar o projetor e a internet (os ícones, as fontes e o estilo vêm da internet).</li>
+      <li>Abrir <b>H → Limpar dados salvos</b> para zerar checklists, cronômetro e posição.</li>
+      <li>Atualizar o slide 27 com uma notícia da semana e conferir o status do PL 2338/2023 e do AI Act.</li>
+      <li>Colocar as imagens da surpresa em <b>images/</b> e rodar <b>images/atualizar-manifest.ps1</b>.</li>
+      <li>Combinar como a turma vai votar nas questões (mão levantada ou duas equipes com placar no quadro).</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= ABERTURA ================= -->
+<section class="page-break" style="--c:#2563EB">
+  <h2>Abertura</h2>
+
+  <div class="slide A"><div class="slide-head"><h3><span class="num">1</span>Capa</h3><span class="who">Arthur (todos se apresentam) · ~1,5 min</span></div>
+    <div class="tag">Fala</div>
+    <div class="fala"><p>Boa noite a todos. Nós somos Arthur, Diego, Gabriela e Vinícius, e hoje vamos fazer uma revisão de Cibersegurança, Normas e Padrões. A ideia é partir dos fundamentos que vocês já viram, como a Tríade CIA, e chegar até o que está mais em alta hoje: regulação de privacidade e de inteligência artificial.</p>
+    <p>Uma frase guia a apresentação: segurança não é um produto, é um processo. E hoje esse processo é cobrado por lei, por contrato e, cada vez mais, por regras específicas para IA.</p></div>
+    <div class="tag">Interação</div>
+    <ul><li class="acao">Cada integrante fala o próprio nome e o bloco que vai apresentar.</li><li class="acao">Iniciar o cronômetro geral na barra inferior.</li><li>Avisar que haverá interatividade em quase todos os slides, questões com cronômetro e uma simulação de crise no fim.</li></ul>
+  </div>
+
+  <div class="slide A"><div class="slide-head"><h3><span class="num">2</span>Agenda e objetivos</h3><span class="who">Arthur · ~2,5 min</span></div>
+    <div class="fala"><p>Vamos em sete etapas. Eu abro com os fundamentos. O Diego mostra como as normas e frameworks organizam a segurança. A Gabriela entra em privacidade e LGPD. O Vinícius fecha a parte teórica com regulação e segurança de IA.</p>
+    <p>Depois temos um tópico extra, criptografia pós-quântica, notícias recentes, três artigos que mostram a evolução da área, questões oficiais de ENADE, POSCOMP e concurso, e uma simulação de crise em que vocês decidem.</p>
+    <p>Ao final, queremos que vocês consigam explicar a CIA expandida, diferenciar norma de framework e de lei, aplicar as bases legais da LGPD, classificar sistemas de IA por risco e, principalmente, perceber que estar em compliance não é o mesmo que estar seguro.</p></div>
+    <div class="trans">Transição: "Vamos começar pelo mapa da disciplina."</div>
+  </div>
+</section>
+
+<!-- ================= BLOCO 1 ================= -->
+<section style="--c:#2563EB">
+  <h2>Bloco 1 · Fundamentos — Arthur</h2>
+
+  <div class="slide A"><div class="slide-head"><h3><span class="num">3</span>Resumo da disciplina</h3><span class="who">Arthur · ~3 min</span></div>
+    <div class="fala"><p>Este é o resumo da disciplina. Ela se organiza em seis eixos: fundamentos, criptografia, redes e sistemas, segurança de software, governança e normas, e privacidade e direito.</p>
+    <p>O que une tudo é a gestão de risco. Risco é probabilidade vezes impacto. A probabilidade depende de haver uma ameaça e uma vulnerabilidade que ela consiga explorar. Todo controle de segurança existe para reduzir um desses fatores.</p></div>
+    <div class="tag">Interação</div>
+    <ul><li>Perguntar: <i>"Um notebook sem criptografia de disco esquecido num táxi: qual a probabilidade? Qual o impacto?"</i></li>
+    <li class="acao">Clicar na célula que a turma escolher na matriz (por exemplo, probabilidade 3 × impacto 4 = 12, Alto).</li>
+    <li class="resp">Mostrar as quatro estratégias de tratamento: mitigar (criptografar o disco), transferir (seguro), evitar (proibir dados no notebook), aceitar.</li></ul>
+  </div>
+
+  <div class="slide A"><div class="slide-head"><h3><span class="num">4</span>Tríade CIA expandida</h3><span class="who">Arthur · ~3 min</span></div>
+    <div class="fala"><p>A base de tudo é a CIA: Confidencialidade, Integridade e Disponibilidade. Hoje ela costuma ser expandida com Autenticidade e Não-repúdio.</p>
+    <p>Confidencialidade é só quem pode ver, ver. Integridade é o dado não ser alterado sem que se perceba. Disponibilidade é o serviço estar lá quando precisamos. Autenticidade é ter certeza de quem é a origem. Não-repúdio é o autor não conseguir negar que fez.</p>
+    <p>Esses pilares entram em tensão: criptografia forte aumenta a confidencialidade, mas se a chave se perde, perdemos a disponibilidade.</p></div>
+    <div class="tag">Interação</div>
+    <ul><li class="acao">Clicar em cada pilar. Antes de mostrar a coluna "Controles", perguntar: <i>"que controle vocês usariam?"</i></li>
+    <li class="acao">Fazer o mini-jogo "Qual pilar foi violado?" com a turma respondendo em voz alta.</li>
+    <li class="resp">Respostas: botnet derrubando o site → D · atendente lendo prontuário → C · malware trocando o boleto → I · login compartilhado → Não-repúdio.</li>
+    <li>Ler a frase do rodapé: assinatura digital não garante confidencialidade. Ela volta nas Questões 1 e 2.</li></ul>
+  </div>
+
+  <div class="slide A"><div class="slide-head"><h3><span class="num">5</span>Cenário atual de ameaças</h3><span class="who">Arthur · ~3 min</span></div>
+    <div class="fala"><p>O adversário hoje é profissional. Existe uma cadeia de valor no crime cibernético, com divisão de trabalho, e isso barateou os ataques.</p>
+    <p>O spear phishing é o phishing direcionado, feito depois de pesquisar a vítima. O ransomware virou serviço: um grupo desenvolve, outro vende acessos, afiliados invadem e dividem o lucro. Na cadeia de suprimentos, o invasor compromete um fornecedor e chega a milhares de vítimas pelo canal legítimo de atualização. E o zero-day é a falha que ainda não tem correção.</p></div>
+    <div class="tag">Interação</div>
+    <ul><li class="acao">Passar pelas quatro abas.</li>
+    <li>Na aba Cadeia de suprimentos, contar o caso XZ Utils: um "mantenedor" ganhou a confiança do projeto por quase dois anos e inseriu um backdoor. Foi descoberto por acaso, por uma lentidão de meio segundo no SSH.</li>
+    <li>Perguntar: <i>"alguém já recebeu um golpe no WhatsApp se passando por um parente?"</i> — é engenharia social dirigida.</li></ul>
+  </div>
+
+  <div class="slide A"><div class="slide-head"><h3><span class="num">6</span>Defesa em profundidade e menor privilégio</h3><span class="who">Arthur · ~2,5 min</span></div>
+    <div class="fala"><p>Dois princípios de arquitetura. Defesa em profundidade: como um castelo medieval, com fosso, muralha, portão e guarda. Nenhuma camada é perfeita, mas juntas elas atrasam, detectam e contêm o atacante.</p>
+    <p>Menor privilégio: cada usuário ou serviço recebe só as permissões de que precisa, e só pelo tempo necessário. Isso diminui o "raio de explosão" quando uma credencial vaza.</p></div>
+    <div class="tag">Interação</div>
+    <ul><li class="acao">Clicar nas camadas de fora para dentro, de Políticas &amp; Pessoas até Dados.</li>
+    <li>No exemplo de IAM, perguntar: <i>"se a chave desse serviço vazar, o que o atacante consegue fazer em cada versão?"</i></li>
+    <li class="resp">Resposta: na primeira, tudo no S3 da conta; na segunda, só ler relatórios de 2026, e somente por HTTPS.</li></ul>
+  </div>
+
+  <div class="slide A"><div class="slide-head"><h3><span class="num">7</span>Arquitetura Zero Trust</h3><span class="who">Arthur · ~3,5 min</span></div>
+    <div class="fala"><p>Zero Trust parte de "nunca confiar, sempre verificar". Estar dentro da rede da empresa não dá confiança nenhuma. Cada acesso é decidido na hora, olhando identidade, dispositivo e contexto.</p>
+    <p>Pela NIST SP 800-207, quem decide é o PDP, o ponto de decisão de política, e quem aplica é o PEP, o ponto de aplicação. Somam-se microsegmentação, para impedir que o invasor se mova lateralmente, e a premissa de assumir que a violação já aconteceu.</p></div>
+    <div class="tag">Interação — simulador</div>
+    <ul><li class="acao">1) Deixe FIDO2 + gerenciado + casa + normal + CRM → PERMITIR.</li>
+    <li class="acao">2) Troque "Casa" por "Rede corporativa" e mostre que a pontuação <b>não muda</b>: a rede não gera confiança.</li>
+    <li class="acao">3) Selecione "Só senha" → STEP-UP (pede verificação adicional).</li>
+    <li class="acao">4) Volte o FIDO2, selecione "Download em massa" + "Base de clientes (PII)" → NEGAR + alerta ao SOC.</li>
+    <li>Peça para a turma sugerir a próxima combinação.</li></ul>
+  </div>
+
+  <div class="slide A"><div class="slide-head"><h3><span class="num">8</span>Estudo de caso: Colonial Pipeline</h3><span class="who">Arthur · ~3 min</span></div>
+    <div class="fala"><p>Para juntar tudo, um caso real. Em 2021, a Colonial Pipeline, que transporta cerca de 45% do combustível da Costa Leste dos EUA, sofreu um ransomware do grupo DarkSide.</p>
+    <p>A entrada foi uma conta de VPN antiga, que ninguém usava, com uma senha que tinha vazado e sem MFA. O afiliado criptografou os sistemas de TI. Sem saber até onde o ataque tinha chegado, a empresa parou os dutos por cerca de cinco dias. Pagou por volta de 4,4 milhões de dólares em bitcoin, e o Departamento de Justiça recuperou parte depois.</p></div>
+    <div class="tag">Interação</div>
+    <ul><li>Perguntar, antes de virar cada cartão: <i>"qual princípio falhou aqui?"</i></li>
+    <li class="resp">Autenticidade (senha sem MFA) · Menor privilégio (conta inativa não desativada) · Zero Trust (VPN dava confiança implícita) · Defesa em profundidade (sem segmentação confiável entre TI e TO, a saída foi parar tudo).</li></ul>
+    <div class="trans">Transição: "Controles técnicos isolados não bastam: é preciso governança. Diego, com você."</div>
+  </div>
+</section>
+
+<!-- ================= BLOCO 2 ================= -->
+<section class="page-break" style="--c:#0284C7">
+  <h2>Bloco 2 · Regulações e Frameworks — Diego</h2>
+
+  <div class="slide D"><div class="slide-head"><h3><span class="num">9</span>Por que governança?</h3><span class="who">Diego · ~2 min</span></div>
+    <div class="fala"><p>Segurança sem método não escala. Normas e frameworks dão uma linguagem comum para TI, jurídico e diretoria, uma referência do que é suficiente e evidências para auditores, clientes e reguladores.</p>
+    <p>Tem uma diferença importante de obrigatoriedade. O NIST CSF é um framework voluntário. A ISO 27001 também é voluntária, mas é certificável. O PCI DSS é imposto por contrato pelas bandeiras de cartão. E a LGPD e a Resolução 4.893 do CMN têm força de lei ou de norma de regulador.</p></div>
+    <div class="tag">Interação</div>
+    <ul><li>Perguntar: <i>"uma startup é obrigada por lei a ter ISO 27001?"</i> <span class="resp">Não, mas um cliente grande pode exigir em contrato.</span></li>
+    <li class="acao">Mini-jogo "Qual referência resolve o problema?":</li>
+    <li class="resp">Loja que guarda cartão → PCI · banco digital contratando nuvem → 4.893 · SaaS que quer provar segurança a clientes → ISO · prefeitura medindo maturidade → CSF.</li></ul>
+  </div>
+
+  <div class="slide D"><div class="slide-head"><h3><span class="num">10</span>ISO/IEC 27001 e 27002</h3><span class="who">Diego · ~3,5 min</span></div>
+    <div class="fala"><p>A ISO 27001 define um SGSI, o Sistema de Gestão da Segurança da Informação. Ela segue o ciclo PDCA. No Plan ficam as cláusulas 4 a 7: contexto, liderança, planejamento e apoio. O Do é a operação, cláusula 8. O Check é a avaliação de desempenho, com auditoria interna, na cláusula 9. O Act é a melhoria, na 10.</p>
+    <p>O coração da norma é a gestão de riscos. Os controles do Anexo A são escolhidos a partir da avaliação de risco e justificados na Declaração de Aplicabilidade. Na versão 2022 são 93 controles em quatro temas: organizacionais, pessoas, físicos e tecnológicos. A 27002 é o guia de como implementar esses controles e não é certificável.</p></div>
+    <div class="tag">Interação</div>
+    <ul><li class="acao">Clicar nas etapas P, D, C e A.</li>
+    <li>Pegadinha de prova: a versão 2013 tinha 114 controles em 14 domínios. Muita apostila ainda traz esse número.</li>
+    <li>Dica: guardem que "controlar mudanças" é Operação, não Liderança — isso cai na Questão 3.</li></ul>
+  </div>
+
+  <div class="slide D"><div class="slide-head"><h3><span class="num">11</span>NIST CSF 2.0</h3><span class="who">Diego · ~3,5 min</span></div>
+    <div class="fala"><p>O NIST Cybersecurity Framework 2.0 saiu em fevereiro de 2024. Ele organiza a segurança em seis funções: Governar, Identificar, Proteger, Detectar, Responder e Recuperar.</p>
+    <p>A grande novidade é a função Governar, no centro. Ela tira a segurança do nível só técnico e a coloca na estratégia da empresa, incluindo o risco da cadeia de suprimentos. O framework usa perfis — o atual e o alvo — e a diferença entre eles vira o plano de ação.</p></div>
+    <div class="tag">Interação</div>
+    <ul><li class="acao">Clicar em Governar e depois nas outras funções, no sentido horário.</li>
+    <li>Perguntar: <i>"o que vocês acham que é mais negligenciado nas empresas: detectar ou recuperar?"</i> — estimular o debate; muitas nunca testam a recuperação.</li></ul>
+  </div>
+
+  <div class="slide D"><div class="slide-head"><h3><span class="num">12</span>PCI DSS v4 e Res. CMN 4.893</h3><span class="who">Diego · ~3 min</span></div>
+    <div class="fala"><p>Dois padrões setoriais. O PCI DSS vale para quem armazena, processa ou transmite dados de cartão. Tem 12 requisitos. A versão 4 exigiu MFA para todo acesso ao ambiente de cartão, senhas de 12 caracteres e o monitoramento dos scripts da página de pagamento, contra ataques que roubam o cartão direto no checkout.</p>
+    <p>A Resolução 4.893 do CMN vale para as instituições autorizadas pelo Banco Central. Ela exige política de segurança cibernética aprovada pela diretoria, um diretor responsável, plano de resposta a incidentes, comunicação de incidentes relevantes ao BC e regras para contratar nuvem.</p></div>
+    <div class="tag">Interação</div>
+    <ul><li>Perguntar: <i>"se o banco terceiriza o serviço e o fornecedor é invadido, quem responde ao Banco Central?"</i> <span class="resp">A instituição continua responsável.</span></li></ul>
+  </div>
+
+  <div class="slide D"><div class="slide-head"><h3><span class="num">13</span>Gestão e resposta a incidentes</h3><span class="who">Diego · ~3 min</span></div>
+    <div class="fala"><p>Quando o incidente acontece, a referência é a NIST SP 800-61: preparação, detecção e análise, contenção, erradicação, recuperação e lições aprendidas.</p>
+    <p>E o relógio regulatório começa a correr. Pela LGPD e pela Resolução 15 da ANPD, de 2024, é preciso comunicar a ANPD e os titulares em até três dias úteis. No GDPR são 72 horas. Os prazos correm em paralelo: uma fintech pode ter ANPD, Banco Central e GDPR ao mesmo tempo.</p></div>
+    <div class="tag">Interação</div>
+    <ul><li class="acao">Clicar nas seis fases.</li>
+    <li>Na Contenção, perguntar: <i>"desligar tudo é uma boa ideia?"</i> <span class="resp">Nem sempre: destrói evidências na memória e para o negócio. Isso volta na Mesa de Crise.</span></li></ul>
+  </div>
+
+  <div class="slide D"><div class="slide-head"><h3><span class="num">14</span>Conformidade vs. segurança real</h3><span class="who">Diego · ~2,5 min</span></div>
+    <div class="fala"><p>Estar em compliance não é estar seguro. A Target, em 2013, tinha certificação PCI meses antes de vazar cerca de 40 milhões de cartões. O invasor entrou pelas credenciais de um fornecedor de climatização, e os alertas foram ignorados.</p>
+    <p>Compliance é o piso, não o teto. A auditoria é uma foto; o ataque é um filme.</p></div>
+    <div class="tag">Interação</div>
+    <ul><li class="acao">Fazer a turma votar em cada cenário antes de clicar.</li>
+    <li class="resp">A (senha trocada todo mês que vira Empresa@01) → conforme, inseguro · B (startup com EDR e sem DPO) → seguro, não conforme · C (pentest com falhas abertas) → conforme, inseguro · D (controles medidos e testados) → conforme e seguro.</li></ul>
+    <div class="trans">Transição: "Até aqui protegemos o ativo. Agora vamos falar dos direitos das pessoas sobre os dados. Gabriela."</div>
+  </div>
+</section>
+
+<!-- ================= BLOCO 3 ================= -->
+<section class="page-break" style="--c:#4F46E5">
+  <h2>Bloco 3 · Privacidade e Proteção de Dados — Gabriela</h2>
+
+  <div class="slide G"><div class="slide-head"><h3><span class="num">15</span>Segurança × privacidade</h3><span class="who">Gabriela · ~1,5 min</span></div>
+    <div class="fala"><p>Segurança da informação protege qualquer informação e pergunta: "o dado está protegido?". Privacidade trata de dados pessoais e pergunta: "podemos usar esse dado, e para quê?".</p>
+    <p>A relação é assimétrica. Dá para ter segurança sem privacidade — um banco de dados perfeitamente criptografado com dados coletados sem base legal. Mas não existe privacidade sem segurança: a LGPD, no artigo 46, exige medidas técnicas para proteger os dados.</p></div>
+    <div class="tag">Interação</div>
+    <ul><li>Abrir com a pergunta do cartão: <i>"um sistema que vende relatórios de localização de clientes, com criptografia de ponta, é seguro? E é lícito?"</i></li>
+    <li class="resp">Pode ser seguro e ainda assim ilícito: sem base legal, com finalidade incompatível e sem transparência.</li></ul>
+  </div>
+
+  <div class="slide G"><div class="slide-head"><h3><span class="num">16</span>LGPD × GDPR</h3><span class="who">Gabriela · ~3 min</span></div>
+    <div class="fala"><p>A LGPD foi inspirada no GDPR europeu, mas elas são irmãs, não gêmeas. A LGPD tem 10 bases legais e o GDPR tem 6. A multa da LGPD é de até 2% do faturamento no Brasil, limitada a 50 milhões de reais por infração; no GDPR chega a 4% do faturamento global. O prazo de notificação de incidente é de 3 dias úteis aqui e de 72 horas lá.</p>
+    <p>E os princípios guiam tudo: finalidade, adequação, necessidade, livre acesso, transparência, qualidade dos dados, entre outros.</p></div>
+    <div class="tag">Interação</div>
+    <ul><li class="acao">Para cada princípio, pedir um exemplo à turma e depois virar o cartão.</li>
+    <li class="resp">Exemplo de adequação: um app de lanterna pedindo acesso aos contatos.</li></ul>
+  </div>
+
+  <div class="slide G"><div class="slide-head"><h3><span class="num">17</span>Bases legais</h3><span class="who">Gabriela · ~3 min</span></div>
+    <div class="fala"><p>Sem base legal não há tratamento. E existe um mito: "sempre precisa de consentimento". O consentimento é só uma das dez bases, e muitas vezes a mais frágil, porque o titular pode revogar a qualquer momento.</p>
+    <p>O legítimo interesse exige um teste documentado, o LIA: finalidade legítima, necessidade e balanceamento com os direitos do titular. E para dados sensíveis, como saúde e biometria, o legítimo interesse não vale.</p></div>
+    <div class="tag">Interação</div>
+    <ul><li class="acao">Fazer o mini-jogo com a turma votando.</li>
+    <li class="resp">Banco comunicando ao COAF → obrigação legal · endereço para entrega → contrato · e-mail compartilhado com parceiros → consentimento · análise de logs contra fraude → legítimo interesse.</li></ul>
+  </div>
+
+  <div class="slide G"><div class="slide-head"><h3><span class="num">18</span>Direitos dos titulares</h3><span class="who">Gabriela · ~2,5 min</span></div>
+    <div class="fala"><p>O titular pode pedir confirmação e acesso, correção, eliminação, portabilidade, revogação do consentimento e revisão de decisões automatizadas.</p>
+    <p>Atender isso é um problema de engenharia. O fluxo é: o canal recebe, autentica o titular, localiza os dados, responde no prazo e registra. Sem inventário de dados, a empresa não consegue responder em 15 dias.</p></div>
+    <div class="tag">Interação</div>
+    <ul><li class="acao">Clicar em "Confirmação e acesso" e depois em "Revisão de decisão automatizada".</li>
+    <li>Perguntar: <i>"por que autenticar quem pede os dados?"</i> <span class="resp">Porque um golpista pode se passar pelo titular para roubar os dados dele.</span></li></ul>
+  </div>
+
+  <div class="slide G"><div class="slide-head"><h3><span class="num">19</span>Controlador, operador e encarregado</h3><span class="who">Gabriela · ~2,5 min</span></div>
+    <div class="fala"><p>O controlador decide: define a finalidade e os meios. O operador executa em nome do controlador e responde junto se descumprir a lei ou as instruções. O encarregado, ou DPO, é a ponte com os titulares e com a ANPD.</p>
+    <p>O papel é definido pelo que a empresa faz, não pelo que o contrato diz.</p></div>
+    <div class="tag">Interação</div>
+    <ul><li class="acao">Fazer o mini-jogo. Deixar o cenário 4 por último.</li>
+    <li class="resp">SaaS de folha → operador · hospital → controlador · quem responde à ANPD → encarregado · nuvem que treina a própria IA com dados dos clientes → controlador, porque passou a definir uma finalidade própria.</li></ul>
+  </div>
+
+  <div class="slide G"><div class="slide-head"><h3><span class="num">20</span>ANPD e RIPD</h3><span class="who">Gabriela · ~2,5 min</span></div>
+    <div class="fala"><p>A ANPD regula, orienta, fiscaliza e sanciona. As sanções vão de advertência e multa até a proibição da atividade de tratamento. Em 2024, por exemplo, ela suspendeu cautelarmente o uso de dados de brasileiros para treinar a IA da Meta.</p>
+    <p>O principal instrumento de gestão é o RIPD, o Relatório de Impacto à Proteção de Dados, equivalente ao DPIA europeu. Ele é feito para tratamentos de alto risco e é um documento vivo.</p></div>
+    <div class="tag">Interação</div>
+    <ul><li class="acao">Marcar os passos do checklist do RIPD com a turma, um a um.</li>
+    <li>Destacar o passo 4: os riscos são avaliados <b>para os titulares</b>, não só para a empresa.</li></ul>
+    <div class="trans">Transição: "E quando quem trata os dados é um modelo de IA? Vinícius."</div>
+  </div>
+</section>
+
+<!-- ================= BLOCO 4 ================= -->
+<section class="page-break" style="--c:#0D9488">
+  <h2>Bloco 4 · Regulação e Segurança em IA — Vinícius</h2>
+
+  <div class="slide V"><div class="slide-head"><h3><span class="num">21</span>O novo vetor da IA</h3><span class="who">Vinícius · ~1 min</span></div>
+    <div class="fala"><p>A IA é ao mesmo tempo ferramenta de defesa, arma e alvo. Defende quando faz triagem de alertas no SOC; ataca quando gera phishing perfeito e deepfakes; e é alvo de ataques próprios.</p>
+    <p>A frase-chave do bloco é: num LLM, dados viram instruções. É daí que vem a prompt injection, e é por isso que a segurança clássica não resolve tudo.</p></div>
+  </div>
+
+  <div class="slide V"><div class="slide-head"><h3><span class="num">22</span>EU AI Act</h3><span class="who">Vinícius · ~3 min</span></div>
+    <div class="fala"><p>O AI Act europeu, de 2024, regula por nível de risco. No topo, o risco inaceitável é proibido: pontuação social, reconhecimento de emoções no trabalho e na escola. Alto risco é permitido com obrigações pesadas: recrutamento, crédito, educação. Risco limitado exige transparência, como avisar que é um chatbot. E risco mínimo, como filtro de spam, não tem obrigações específicas.</p>
+    <p>O ponto importante: ele regula o uso, não a tecnologia. O mesmo modelo pode ser mínimo num jogo e alto risco no RH. As multas chegam a 35 milhões de euros ou 7% do faturamento global.</p></div>
+    <div class="tag">Interação</div>
+    <ul><li class="acao">Clicar na pirâmide de cima para baixo.</li>
+    <li class="acao">Mini-jogo: triagem de currículos → alto · chatbot de loja → limitado · câmeras medindo emoção de alunos → inaceitável.</li>
+    <li>Citar que a proposta "Digital Omnibus" pode adiar parte das regras de alto risco (verificar o status na semana).</li></ul>
+  </div>
+
+  <div class="slide V"><div class="slide-head"><h3><span class="num">23</span>PL 2338/2023</h3><span class="who">Vinícius · ~2,5 min</span></div>
+    <div class="fala"><p>No Brasil, o PL 2338 de 2023 foi aprovado pelo Senado em dezembro de 2024 e está na Câmara. A lógica é parecida com a europeia, com risco excessivo e alto risco, mas com mais ênfase nos direitos das pessoas afetadas: saber que está falando com uma IA, pedir explicação, contestar a decisão e ter revisão humana.</p>
+    <p>Um exemplo de discriminação algorítmica: um modelo de crédito que usa o CEP pode reproduzir desigualdades raciais e regionais, mesmo sem usar raça como variável. Isso é discriminação indireta.</p></div>
+    <div class="tag">Interação</div>
+    <ul><li>Perguntar: <i>"que outra variável 'neutra' pode funcionar como substituta de raça ou gênero?"</i> <span class="resp">Nome, escola, bairro, horário de uso do app.</span></li></ul>
+  </div>
+
+  <div class="slide V"><div class="slide-head"><h3><span class="num">24</span>Segurança técnica em IA</h3><span class="who">Vinícius · ~3,5 min</span></div>
+    <div class="fala"><p>Três ataques principais. Prompt injection: direta, quando o próprio usuário tenta enganar o modelo, ou indireta, quando a instrução maliciosa está escondida num documento ou página que o modelo lê. Data poisoning: envenenar os dados de treino para criar backdoors. E exfiltração: o assistente com RAG entregar documentos que o usuário não poderia ver.</p>
+    <p>Não existe filtro 100% eficaz. A defesa realista é limitar o impacto.</p></div>
+    <div class="tag">Interação — demo</div>
+    <ul><li class="acao">1ª execução sem nenhuma defesa → o agente envia a planilha de salários para fora.</li>
+    <li class="acao">2ª execução só com o "Classificador de injeção" → na maioria das vezes bloqueia, mas às vezes uma variante ofuscada passa. Rodar duas ou três vezes para mostrar.</li>
+    <li class="acao">3ª execução com "Menor privilégio" e "Aprovação humana" → bloqueado mesmo quando o modelo é enganado.</li>
+    <li>Mensagem: defesa em profundidade também vale para IA. (A demo é uma simulação, não um LLM real.)</li></ul>
+  </div>
+
+  <div class="slide V"><div class="slide-head"><h3><span class="num">25</span>AI TRiSM</h3><span class="who">Vinícius · ~2 min</span></div>
+    <div class="fala"><p>AI TRiSM é um termo da Gartner para Trust, Risk and Security Management: explicabilidade e monitoramento, ModelOps, segurança das aplicações de IA e privacidade.</p>
+    <p>Como referência há o NIST AI RMF e a ISO/IEC 42001, que é a "27001 da IA", com a mesma lógica PDCA. O ciclo de vida seguro vai dos dados até a desativação do modelo, e a auditoria precisa ser contínua.</p></div>
+    <div class="tag">Interação</div>
+    <ul><li class="acao">Clicar nas etapas do ciclo de vida, destacando Avaliação (red teaming) e Monitoração (drift).</li></ul>
+    <div class="trans">Transição: "Agora os complementos. Arthur traz o tópico adicional."</div>
+  </div>
+</section>
+
+<!-- ================= COMPLEMENTOS ================= -->
+<section class="page-break" style="--c:#D97706">
+  <h2>Complementos — Arthur, Diego e Gabriela</h2>
+
+  <div class="slide A"><div class="slide-head"><h3><span class="num">26</span>Tópico adicional: Criptografia Pós-Quântica</h3><span class="who">Arthur · ~4 min</span></div>
+    <div class="fala"><p>Escolhemos este tópico porque a disciplina ensina RSA e curvas elípticas, e eles serão quebrados por um computador quântico grande o bastante, pelo algoritmo de Shor. Já a criptografia simétrica sofre menos: pelo algoritmo de Grover, basta dobrar a chave, e o AES-256 continua seguro.</p>
+    <p>O risco já existe hoje por causa do "harvest now, decrypt later": capturar o tráfego agora para decifrar no futuro. Em 2024 o NIST publicou os primeiros padrões pós-quânticos: ML-KEM para troca de chaves e ML-DSA e SLH-DSA para assinatura. Os navegadores já usam troca de chaves híbrida.</p></div>
+    <div class="tag">Interação — calculadora de Mosca</div>
+    <ul><li class="acao">Prontuário médico: x = 25, y = 8, z = 12 → risco: já estamos atrasados.</li>
+    <li class="acao">Token de sessão: x = 0 → sem urgência.</li>
+    <li>Moral: a prioridade depende de quanto tempo o dado precisa continuar secreto.</li></ul>
+  </div>
+
+  <div class="slide D"><div class="slide-head"><h3><span class="num">27</span>Notícias e tendências</h3><span class="who">Diego · ~3 min</span></div>
+    <div class="fala"><p>Três notícias. Em julho de 2025, criminosos usaram credenciais de um funcionário da C&amp;M Software, empresa que conecta instituições financeiras menores aos sistemas do Banco Central, para desviar dinheiro de contas reserva via PIX. Segundo a imprensa, foram centenas de milhões de reais.</p>
+    <p>Em setembro de 2025, o worm Shai-Hulud infectou pacotes do npm: roubava tokens de desenvolvedores e usava esses tokens para infectar outros pacotes. E em agosto de 2025 começaram a valer as regras do AI Act para modelos de propósito geral.</p></div>
+    <div class="tag">Interação — debate</div>
+    <ul><li>Perguntar: <i>"nos dois primeiros casos o invasor usou um acesso legítimo. Que controle do Bloco 1 teria ajudado? E quem responde ao regulador?"</i></li>
+    <li class="resp">Menor privilégio, detecção de comportamento anômalo, segregação de funções. Pela Res. 4.893, a instituição continua responsável mesmo terceirizando.</li>
+    <li><b>Antes da apresentação:</b> trocar ou complementar com uma notícia da semana.</li></ul>
+  </div>
+
+  <div class="slide G"><div class="slide-head"><h3><span class="num">28</span>Evolução do tema em 3 artigos</h3><span class="who">Gabriela · ~4 min</span></div>
+    <div class="fala"><p>Três artigos mostram como a área evoluiu. Em 2011, Hutchins, Cloppert e Amin, da Lockheed Martin, propuseram a Cyber Kill Chain: pensar a defesa a partir do adversário, em sete fases, e não só das vulnerabilidades.</p>
+    <p>Em 2020, o NIST publicou a SP 800-207, que formalizou o Zero Trust: o perímetro de rede deixa de ser a fronteira de confiança. E em 2023, Greshake e colegas demonstraram a injeção indireta de prompt em aplicações reais com LLM: qualquer conteúdo que o modelo lê vira superfície de ataque.</p>
+    <p>O fio condutor: a cada década, o que precisa ser defendido fica mais difuso — da rede para a identidade e, agora, para o contexto de um modelo.</p></div>
+    <div class="tag">Interação</div>
+    <ul><li>Perguntar: <i>"como vocês acham que será o artigo marcante de 2030?"</i> (agentes autônomos, PQC, deepfakes...)</li></ul>
+  </div>
+</section>
+
+<!-- ================= QUESTÕES ================= -->
+<section class="page-break" style="--c:#E11D48">
+  <h2>Questões — Vinícius conduz; cada um resolve a do seu bloco</h2>
+  <div class="box"><b>Para todas as questões:</b> ler o enunciado em voz alta → apertar <span class="kbd">T</span> (ou "Iniciar") → a turma vota → clicar na alternativa mais votada → "Revelar resposta" → explicar os passos que aparecem. Tempos sugeridos: 2 min nas de múltipla escolha, 1,5 min nas de Certo/Errado (ajustar no controle deslizante).</div>
+
+  <div class="slide V"><div class="slide-head"><h3><span class="num">29</span>Como vai funcionar</h3><span class="who">Vinícius · ~1 min</span></div>
+    <div class="fala"><p>Agora é com vocês. Separamos cinco questões oficiais — do ENADE 2021, do POSCOMP e de concursos do Cebraspe — com o gabarito oficial, e uma questão bônus sobre IA feita por nós, porque o tema ainda não apareceu em provas. Cada um vai ter um tempo no cronômetro para responder, e depois resolvemos juntos.</p></div>
+    <ul><li class="acao">Se forem usar duas equipes, dividir a sala agora e anotar o placar no quadro.</li></ul>
+  </div>
+
+  <div class="slide A"><div class="slide-head"><h3><span class="num">30</span>Questão 1 · ENADE 2021, Q24 (criptografia)</h3><span class="who">Arthur resolve · ~3 min</span></div>
+    <div class="tag">Resolução falada</div>
+    <div class="fala"><p>A afirmação I está correta: quem assina usa a chave privada, e qualquer um verifica com a chave pública do remetente. Isso garante autenticidade.</p>
+    <p>A II também: usar um vetor de inicialização diferente em cada mensagem faz com que textos iguais gerem cifras diferentes e dificulta repetir mensagens antigas.</p>
+    <p>A III está errada: o AES é simétrico e usa a mesma chave dos dois lados. "Par de chaves" é da criptografia assimétrica.</p>
+    <p>A IV está correta: o SHA-256 gera um hash, e comparar os hashes detecta alteração, ou seja, integridade. Gabarito oficial: letra E — I, II e IV.</p></div>
+    <ul><li>Relacionar com o slide 4: a questão cobre autenticidade, confidencialidade e integridade de uma vez.</li></ul>
+  </div>
+
+  <div class="slide V"><div class="slide-head"><h3><span class="num">31</span>Questão 2 · POSCOMP 2011, Q46 (RSA)</h3><span class="who">Vinícius resolve · ~3 min</span></div>
+    <div class="fala"><p>A regra para memorizar é: para sigilo, cifro com a chave pública do destinatário; para assinar, uso a minha chave privada.</p>
+    <p>A letra A descreve exatamente o sigilo: cifra com a pública do destinatário e ele decifra com a privada dele. Está correta.</p>
+    <p>A B é a pegadinha: chama de assinatura um procedimento que é, na verdade, de cifragem. A C diz "impossível", mas o correto é "computacionalmente inviável". A D erra porque o RSA é bem mais lento que as cifras simétricas — por isso se usa esquema híbrido. E a E erra porque quem gera as chaves é o próprio usuário; a autoridade certificadora só certifica a chave pública. Gabarito oficial: A.</p></div>
+  </div>
+
+  <div class="slide D"><div class="slide-head"><h3><span class="num">32</span>Questão 3 · Cebraspe EMBRAPA, itens 69 e 70 (ISO)</h3><span class="who">Diego resolve · ~2,5 min</span></div>
+    <div class="fala"><p>O item 69 está certo: é o controle 5.3 da 27002, segregação de funções. Quem pede não aprova, quem desenvolve não publica.</p>
+    <p>O item 70 está errado. Controlar mudanças planejadas e rever as não intencionais fica na cláusula 8, Operação, e o planejamento de mudanças do SGSI na 6.3. A cláusula 5, Liderança, trata de política, papéis e comprometimento da direção. Gabarito oficial: 69 Certo, 70 Errado.</p></div>
+    <ul><li>Dica de prova: no Cebraspe um item errado anula um certo; em caso de dúvida, deixar em branco pode ser estratégia.</li></ul>
+  </div>
+
+  <div class="slide G"><div class="slide-head"><h3><span class="num">33</span>Questão 4 · ENADE 2021, Q12 (LGPD)</h3><span class="who">Gabriela resolve · ~3 min</span></div>
+    <div class="fala"><p>A afirmação I está correta: dados sensíveis, como origem racial, religião e opinião política, têm tratamento restrito pelo artigo 11.</p>
+    <p>A II está errada: se a anonimização pode ser revertida com esforço razoável, o dado volta a ser pessoal, pelo artigo 12.</p>
+    <p>A III está correta: são os direitos de confirmação, acesso, correção e eliminação do artigo 18, que vimos no slide 18.</p>
+    <p>A IV está errada num detalhe: a ANPD fiscaliza e regulamenta, mas não modifica a lei; isso é papel do Congresso. Gabarito oficial: B — I e III.</p></div>
+  </div>
+
+  <div class="slide V"><div class="slide-head"><h3><span class="num">34</span>Questão 5 · Cebraspe PCDF e ANM</h3><span class="who">Vinícius resolve · ~3 min</span></div>
+    <div class="fala"><p>O item 105 está errado. A justificativa oficial do Cebraspe diz que o certificado SSL só protege o transporte; ele não impede que você entregue sua senha a um site falso. Site com cadeado pode ser golpe.</p>
+    <p>O item 108 está certo: o endereço IP é dado pessoal, precisa de base legal, e o titular tem direito a acesso e eliminação.</p>
+    <p>O item 80 está errado: "garante blindagem" é absoluto demais. O SMS pode ser interceptado por SIM swap ou por phishing em tempo real — por isso falamos em FIDO2 no slide 5. Gabarito oficial: 105 Errado, 108 Certo, 80 Errado.</p></div>
+    <ul><li>Dica de prova: palavras absolutas como "garante", "elimina", "sempre" e "isenta" costumam indicar item errado no Cebraspe.</li></ul>
+  </div>
+
+  <div class="slide V"><div class="slide-head"><h3><span class="num">35</span>Bônus · Regulação de IA</h3><span class="who">Vinícius · ~2 min</span></div>
+    <div class="fala"><p>Esta questão foi elaborada por nós, no formato do ENADE. Um sistema que ranqueia currículos está no Anexo III do AI Act, na área de emprego, então é alto risco, com gestão de riscos, governança de dados, logs, supervisão humana e avaliação de conformidade. Resposta: B.</p>
+    <p>O distrator é a E: ter um humano na decisão final não tira o sistema do regulamento. O PL 2338 também classifica seleção de pessoal como alto risco.</p></div>
+    <ul><li class="acao">Mostrar o placar final das equipes.</li></ul>
+  </div>
+</section>
+
+<!-- ================= ENCERRAMENTO ================= -->
+<section class="page-break" style="--c:#0F172A">
+  <h2>Encerramento — todos</h2>
+
+  <div class="slide A"><div class="slide-head"><h3><span class="num">36</span>Síntese dos 4 pilares</h3><span class="who">Arthur conduz, todos falam · ~1,5 min</span></div>
+    <div class="fala"><p>Para fechar: os quatro pilares falam a mesma língua, a da gestão de riscos. Segurança protege o dado, governança prova que protege, privacidade garante que o uso é legítimo — e a IA exige tudo isso ao mesmo tempo.</p></div>
+    <div class="tag">Interação</div>
+    <ul><li class="acao">Arthur clica no centro "Risco". Depois cada integrante clica no seu pilar e diz uma frase:</li>
+    <li><b>Arthur (Segurança):</b> "CIA, menor privilégio e Zero Trust são o como proteger."</li>
+    <li><b>Diego (Governança):</b> "ISO e NIST transformam controles soltos em programa com evidência."</li>
+    <li><b>Gabriela (Privacidade):</b> "Proteger não basta: precisa ter base legal e respeitar os direitos do titular."</li>
+    <li><b>Vinícius (IA):</b> "Na IA, dado vira instrução — por isso regulamos por risco e limitamos o impacto."</li>
+    <li class="acao">Clicar em uma ou duas interseções, por exemplo S ∩ P (art. 46 da LGPD).</li></ul>
+  </div>
+
+  <div class="slide D"><div class="slide-head"><h3><span class="num">37</span>Checklist prático</h3><span class="who">Diego · ~1,5 min</span></div>
+    <div class="fala"><p>Se vocês forem levar algo para a empresa onde trabalham ou estagiam, é este checklist: governança, técnica, privacidade e IA.</p></div>
+    <ul><li>Perguntar: <i>"quantos desses itens a empresa de vocês já cumpre?"</i></li>
+    <li class="acao">Marcar os itens que a turma disser que as empresas cumprem e comentar o resultado da barra.</li>
+    <li>Ponte: "vamos ver o que acontece quando parte disso falta."</li></ul>
+  </div>
+
+  <div class="slide V"><div class="slide-head"><h3><span class="num">38</span>Mesa de Crise (atividade interativa final)</h3><span class="who">Vinícius narra · Gabriela conduz a votação e clica · ~6 min</span></div>
+    <div class="fala"><p>(Vinícius) Agora vocês são o comitê de crise da PagFácil, uma fintech com 2 milhões de clientes, regulada pelo Banco Central. É sexta-feira, 23h47. São quatro rodadas; em cada uma vocês escolhem uma ação e ganham até 10 pontos.</p></div>
+    <div class="tag">Roteiro das rodadas</div>
+    <ul><li><b>Rodada 1 · Detecção:</b> alerta de criptografia em massa e nota de resgate. Melhor resposta: <span class="resp">B — acionar o plano, isolar os segmentos afetados e preservar evidências</span>. Parcial: A (desligar tudo).</li>
+    <li><b>Rodada 2 · Comunicação:</b> VPN de ex-funcionário sem MFA e 400 mil registros exfiltrados. Melhor: <span class="resp">C — ANPD e titulares em 3 dias úteis, Banco Central e polícia</span>. Parcial: A (só o BC).</li>
+    <li><b>Rodada 3 · Recuperação:</b> backups online criptografados, mas existe uma cópia imutável. Melhor: <span class="resp">A — erradicar, reconstruir limpo e restaurar a cópia imutável</span>. Parcial: B (restaurar direto).</li>
+    <li><b>Rodada 4 · Lições aprendidas:</b> a diretoria quer encerrar o assunto. Melhor: <span class="resp">D — revisão sem culpados, MFA, revisão de contas órfãs e tabletops periódicos</span>. Parcial: B (comprar ferramenta).</li>
+    <li class="acao">Gabriela: dar cerca de 1 minuto de discussão, contar os votos, clicar na opção vencedora e ler a explicação. Não revelar a melhor resposta antes do voto.</li>
+    <li>No final, comentar a pontuação e ligar cada rodada ao que foi visto: NIST SP 800-61, LGPD/Res. 15, Res. 4.893, backups 3-2-1-1-0 e o caso Colonial Pipeline.</li></ul>
+  </div>
+
+  <div class="slide T"><div class="slide-head"><h3><span class="num">39</span>Perguntas e respostas</h3><span class="who">Todos (Arthur abre e fecha) · ~3 min</span></div>
+    <div class="fala"><p>(Arthur) Muito obrigado pela atenção e pela participação. Segurança é um processo contínuo de gestão de riscos — com pessoas, métodos, leis e, agora, modelos de IA no mesmo tabuleiro. Abrimos para perguntas.</p></div>
+    <ul><li>Cada pergunta é respondida por quem apresentou o bloco relacionado.</li>
+    <li>Se a turma estiver tímida, usar as perguntas de debate do slide: pagar resgate? Regulação de IA freia a inovação? DPO dentro da TI tem conflito de interesses?</li>
+    <li>Arthur agradece ao professor e à turma e encerra.</li></ul>
+  </div>
+</section>
+
+<!-- ================= PERGUNTAS PROVÁVEIS ================= -->
+<section class="page-break">
+  <h2>Perguntas que podem surgir</h2>
+  <div class="box" style="--c:#2563EB"><h3>Arthur</h3><ul>
+    <li><b>Zero Trust elimina a VPN?</b> Não necessariamente; a VPN deixa de ser a fronteira de confiança. Muitas empresas trocam por ZTNA, que dá acesso por aplicação, não à rede inteira.</li>
+    <li><b>Quando chega o computador quântico que quebra RSA?</b> Ninguém sabe; as estimativas variam de 10 a 30 anos. Por isso a lógica de Mosca: o que importa é quanto tempo o dado precisa ficar secreto.</li>
+    <li><b>Pagar o resgate é crime?</b> No Brasil não há proibição geral, mas pode violar sanções internacionais se o grupo estiver listado, e não garante a devolução dos dados.</li></ul></div>
+  <div class="box" style="--c:#0284C7"><h3>Diego</h3><ul>
+    <li><b>ISO 27001 ou NIST CSF: qual escolher?</b> Não são excludentes. O CSF serve para medir maturidade e priorizar; a ISO, para certificar. A 27002:2022 tem atributos que fazem o mapeamento entre os dois.</li>
+    <li><b>PCI DSS é lei?</b> Não, é contratual. Quem descumpre pode pagar multa às bandeiras ou perder o direito de aceitar cartões.</li>
+    <li><b>Quanto custa uma certificação ISO?</b> Depende do escopo; o maior custo costuma ser a implantação do SGSI, não a auditoria.</li></ul></div>
+  <div class="box" style="--c:#4F46E5"><h3>Gabriela</h3><ul>
+    <li><b>Posso usar legítimo interesse para marketing?</b> Em alguns casos, sim — para clientes existentes, com produtos parecidos e opção fácil de sair —, desde que o teste LIA esteja documentado.</li>
+    <li><b>Toda empresa precisa de DPO?</b> Em regra, sim. Agentes de pequeno porte podem ser dispensados (Res. 2/2022), mas precisam manter um canal de comunicação.</li>
+    <li><b>Dado pseudonimizado é anônimo?</b> Não. Se é possível reidentificar com uma informação guardada à parte, continua sendo dado pessoal.</li></ul></div>
+  <div class="box" style="--c:#0D9488"><h3>Vinícius</h3><ul>
+    <li><b>O AI Act vale para empresas brasileiras?</b> Sim, se colocarem sistemas no mercado europeu ou se os resultados forem usados na UE — efeito extraterritorial, como o GDPR.</li>
+    <li><b>Dá para resolver prompt injection de vez?</b> Até hoje não. As defesas reduzem a chance; o mais confiável é limitar o que o modelo consegue fazer (menor privilégio e aprovação humana).</li>
+    <li><b>Usar o ChatGPT no trabalho viola a LGPD?</b> Pode violar, se envolver dados pessoais de clientes sem base legal ou sem contrato adequado com o fornecedor. Por isso o checklist pede uma política de uso de IA generativa.</li></ul></div>
+  <p class="muted" style="margin-top:6mm">Fontes das questões: INEP — ENADE 2021, Ciência da Computação (Bacharelado), caderno de prova e gabarito definitivo; SBC — POSCOMP 2011, caderno e gabarito oficial definitivo; Cebraspe — EMBRAPA (edital 2024, aplicação 23/3/2025), PCDF (aplicação 12/1/2025) e ANM (aplicação 16/2/2025), cadernos e gabaritos oficiais definitivos.</p>
+</section>
+
+</body>
+</html>

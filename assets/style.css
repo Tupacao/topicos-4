@@ -331,3 +331,7 @@ input[type="range"] { accent-color: var(--accent); width: 100%; cursor: pointer;
 [data-quiz] .opt { font-size: 21px; padding: 13px 16px; }
 [data-quiz] .opt-letter { width: 36px; height: 36px; }
 [data-checklist="org"] .check-item { font-size: 18.5px; padding: 9px 10px; }
+[data-quiz] .q-dense .opt { font-size: 15.5px; padding: 8px 12px; line-height: 1.35; }
+[data-quiz] .q-dense .opt-letter { width: 30px; height: 30px; }
+[data-quiz] .q-short .opt { align-items: center; }
+[data-quiz] [data-correct] .opt { font-size: 19px; }

@@ -337,16 +337,19 @@
     const explain = root.querySelector('.q-explain');
     const revealBtn = root.querySelector('[data-quiz-reveal]');
     let revealed = false;
+    // Cada alternativa pertence ao grupo [data-correct] mais próximo: a própria questão
+    // (múltipla escolha) ou cada item Certo/Errado.
+    const groupOf = o => o.closest('[data-correct]');
     opts.forEach(o => o.addEventListener('click', () => {
       if (revealed) return;
       const was = o.classList.contains('sel');
-      opts.forEach(x => x.classList.remove('sel'));
+      opts.filter(x => groupOf(x) === groupOf(o)).forEach(x => x.classList.remove('sel'));
       if (!was) o.classList.add('sel');
     }));
     revealBtn.addEventListener('click', () => {
       revealed = !revealed;
-      const correct = root.dataset.correct;
       opts.forEach(o => {
+        const correct = groupOf(o)?.dataset.correct;
         o.classList.remove('right', 'wrong', 'dim');
         if (!revealed) return;
         if (o.dataset.opt === correct) o.classList.add('right');
