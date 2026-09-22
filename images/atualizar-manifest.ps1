@@ -3,7 +3,7 @@
 $dir = $PSScriptRoot
 $exts = @('.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg', '.avif')
 $files = Get-ChildItem -Path $dir -File | Where-Object { $exts -contains $_.Extension.ToLower() } | Sort-Object Name
-$items = $files | ForEach-Object { '  "' + ($_.Name -replace '\', '\' -replace '"', '\"') + '"' }
+$items = $files | ForEach-Object { '  "' + ($_.Name -replace '"', '\"') + '"' }
 $content = @"
 // Lista de imagens usadas na "surpresa" aleatória entre slides.
 // Gerado por images/atualizar-manifest.ps1 — rode o script sempre que adicionar/remover imagens.
