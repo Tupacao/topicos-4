@@ -37,7 +37,7 @@ O navegador não consegue listar uma pasta sozinho, por isso o script gera o `im
 
 ## Estrutura
 
-- `index.html` — os 40 slides e as notas do apresentador (`<aside class="notes" data-min="…">`)
+- `index.html` — os 41 slides e as notas do apresentador (`<aside class="notes" data-min="…">`)
 - `assets/app.js` — navegação, persistência, notas, visão geral, cronômetro e surpresa
 - `assets/interactive.js` — widgets (abas, mini-jogos, simulador Zero Trust, demo de prompt injection, questões, Mesa de Crise)
 - `assets/style.css` — tema visual

@@ -1442,105 +1442,174 @@
   <aside class="notes" data-min="2.5">
     <p><b>Vinícius (fecha o Bloco 4).</b> AI TRiSM é um termo cunhado pela Gartner: um guarda-chuva que integra confiança, risco e segurança de IA. Mostrar que a ISO/IEC 42001 repete a lógica PDCA da 27001, agora para modelos.</p>
     <p>Ao percorrer o ciclo de vida, insistir na terceira caixa de cada etapa — a <b>evidência</b>. É o que diferencia governança de intenção: se não gera artefato automaticamente, não é auditável. Etapas que costumam ser esquecidas: <b>avaliação</b> (ninguém faz red team antes de produção) e <b>desativação</b> (endpoint velho continua no ar).</p>
-    <p>Se perguntarem por onde começar: inventário dos sistemas de IA + classificação de risco (é o primeiro item do checklist do slide 37).</p>
+    <p>Se perguntarem por onde começar: inventário dos sistemas de IA + classificação de risco (é o primeiro item do checklist do slide 38).</p>
   </aside>
 </section>
 <!-- =====================================================================
      COMPLEMENTOS
      ===================================================================== -->
 
-<!-- 26 · TÓPICO ADICIONAL: SEGURANÇA DE TO/ICS -->
-<section class="slide" data-block="b5" data-title="Tópico adicional: Segurança de TO/ICS e IEC 62443">
+<!-- 26 · TÓPICO ADICIONAL: POR QUE TO/ICS É OUTRO JOGO -->
+<section class="slide" data-block="b5" data-title="Tópico adicional: segurança de TO/ICS">
   <div class="slide-inner">
     <span class="kicker"><i data-lucide="factory"></i> Tópico adicional · Além do conteúdo da disciplina</span>
     <h2 class="title">Segurança de <em>TO/ICS</em>: o bug que vira <em>acidente físico</em></h2>
-    <div class="slide-body flex flex-col gap-3">
+    <div class="slide-body flex flex-col gap-4">
 
-      <div class="grid grid-cols-[1fr_1.18fr] gap-5 flex-1 min-h-0">
-        <div class="flex flex-col gap-2.5 min-h-0">
-          <div class="card !py-3">
-            <div class="h3">Por que TO não é TI com outro nome</div>
-            <div class="card-soft !p-2.5 mt-2 text-[13px] leading-snug" style="--accent:#DC2626"><b>A tríade inverte.</b> Em TI a ordem é <b>C → I → D</b>: primeiro não vazar e, se preciso, derruba-se o serviço para conter. Em TO é <b>segurança física → D → I → C</b>: parar a planta pode ser pior que o próprio ataque, e antes de tudo vem a vida das pessoas.</div>
-            <ul class="bullets text-[13px] mt-2 leading-snug">
-              <li><b>Ciclo de vida de 20–30 anos:</b> há PLC em produção mais velho que quem o opera. "Só atualizar" não existe.</li>
-              <li><b>Sem janela de manutenção:</b> parar um alto-forno custa milhões; o patch espera a parada programada, que pode ser anual.</li>
-              <li><b>Protocolos sem autenticação por projeto:</b> Modbus, DNP3 e S7comm nasceram numa rede presumida isolada. Quem alcança a rede, comanda.</li>
-              <li><b>Nada de EDR no PLC:</b> o controlador não roda agente e não tem log decente — a defesa precisa vir da <b>arquitetura</b>.</li>
-            </ul>
-          </div>
-
-          <div class="card !py-3 flex-1 min-h-0">
-            <div class="h3">Incidentes que definiram a área</div>
-            <div class="flex flex-col gap-1 mt-1.5 text-[12px] leading-snug">
-              <div class="flex gap-2.5"><span class="chip red xs flex-none !px-2">2010</span><div><b>Stuxnet</b> — alterava a rotação das centrífugas de Natanz <b>enquanto mostrava valores normais</b> ao operador. A primeira arma cibernética com efeito físico.</div></div>
-              <div class="flex gap-2.5"><span class="chip red xs flex-none !px-2">2015<br>2016</span><div><b>Ucrânia · BlackEnergy3 e Industroyer</b> — o invasor abriu disjuntores pela IHM, na frente do operador (~225 mil sem energia). No ano seguinte veio o primeiro malware a falar os protocolos elétricos nativamente.</div></div>
-              <div class="flex gap-2.5"><span class="chip red xs flex-none !px-2">2017</span><div><b>TRITON / TRISIS</b> — atacou o <b>SIS</b> de uma petroquímica: mirou justamente o sistema que existe para evitar explosões.</div></div>
-              <div class="flex gap-2.5"><span class="chip amber xs flex-none !px-2">2021<br>2022</span><div><b>Colonial Pipeline</b> — ataque só na TI que parou os dutos por falta de visibilidade da TO (slide 8). No ano seguinte, <b>Industroyer2 e PIPEDREAM</b>: ferramentas modulares que atingem PLCs de <b>vários fabricantes</b> — a industrialização do ataque a TO.</div></div>
+      <div class="grid grid-cols-[1fr_1.08fr] gap-6 flex-1 min-h-0">
+        <div class="card flex flex-col">
+          <div class="h3">Por que TO não é TI com outro nome</div>
+          <div class="grid grid-cols-2 gap-3 mt-3">
+            <div class="card-soft !p-3" style="--accent:#2563EB">
+              <div class="text-[12px] font-extrabold uppercase tracking-wider text-slate-500">Prioridade em TI</div>
+              <div class="font-black text-[22px] mt-0.5">C → I → D</div>
+              <div class="small muted leading-snug mt-1">Primeiro não vazar. Se precisar conter, derruba-se o serviço.</div>
+            </div>
+            <div class="card-soft !p-3" style="--accent:#DC2626">
+              <div class="text-[12px] font-extrabold uppercase tracking-wider text-slate-500">Prioridade em TO/ICS</div>
+              <div class="font-black text-[19px] mt-0.5 leading-tight">Segurança física → D → I → C</div>
+              <div class="small muted leading-snug mt-1">Parar a planta pode ser pior que o ataque — e antes de tudo vem a vida das pessoas.</div>
             </div>
           </div>
+          <ul class="bullets small mt-4 flex-1 flex flex-col justify-evenly">
+            <li><b>Ciclo de vida de 20 a 30 anos.</b> Há PLC em produção mais velho que quem o opera, rodando sistema sem suporte. "Só atualizar" não existe.</li>
+            <li><b>Sem janela de manutenção.</b> Parar um alto-forno ou uma subestação custa milhões: o patch espera a parada programada, que pode ser anual.</li>
+            <li><b>Protocolos sem autenticação por projeto.</b> Modbus, DNP3, S7comm e EtherNet/IP nasceram numa rede que se presumia isolada. Quem alcança a rede, comanda — não há credencial a roubar.</li>
+            <li><b>Nada de EDR no controlador.</b> O PLC não roda agente, não gera log decente e reinicia em segundos. A defesa precisa vir da <b>arquitetura</b>, não do endpoint.</li>
+            <li><b>Errar tem consequência física.</b> Um falso positivo que derruba um servidor é incômodo; num processo químico, pode ser um acidente.</li>
+          </ul>
         </div>
 
-        <div class="card flex flex-col !py-3 min-h-0" data-tabs="l3h">
-          <div class="flex items-center justify-between"><div class="h3">Modelo Purdue + zonas e condutos (IEC 62443-3-2)</div><span class="hint"><i data-lucide="mouse-pointer-click"></i> clique num nível</span></div>
-          <div class="grid grid-cols-[208px_1fr] gap-3 mt-2.5 flex-1 min-h-0">
-            <div class="flex flex-col gap-1.5 layer-stack">
-              <button class="tab-btn !py-1.5 !px-3 text-[13.5px]" data-tab="l5" style="--accent:#2563EB"><span>Nível 5 · Corporativo</span></button>
-              <button class="tab-btn !py-1.5 !px-3 text-[13.5px]" data-tab="l4" style="--accent:#2563EB"><span>Nível 4 · Negócio da planta</span></button>
-              <button class="tab-btn !py-1.5 !px-3 text-[13.5px]" data-tab="l3h" style="--accent:#D97706"><span>Nível 3,5 · <b>DMZ industrial</b></span></button>
-              <button class="tab-btn !py-1.5 !px-3 text-[13.5px]" data-tab="l3" style="--accent:#0284C7"><span>Nível 3 · Operações do site</span></button>
-              <button class="tab-btn !py-1.5 !px-3 text-[13.5px]" data-tab="l2" style="--accent:#0284C7"><span>Nível 2 · Supervisão SCADA</span></button>
-              <button class="tab-btn !py-1.5 !px-3 text-[13.5px]" data-tab="l1" style="--accent:#DC2626"><span>Nível 1 · Controle (PLC/SIS)</span></button>
-              <button class="tab-btn !py-1.5 !px-3 text-[13.5px]" data-tab="l0" style="--accent:#DC2626"><span>Nível 0 · Processo físico</span></button>
-              <div class="card-soft !p-2 mt-auto text-[11.5px] leading-snug"><b>Zona</b> = ativos com o mesmo requisito de segurança. <b>Conduíte</b> = o único caminho autorizado entre duas zonas — e ele é inspecionado.</div>
-            </div>
-
-            <div class="card-soft !p-3 flex flex-col min-h-0">
-              <div data-panel="l5" class="h-full flex flex-col"><div class="font-extrabold text-[16.5px]">Nível 5 — Rede corporativa</div><div class="text-[13.5px] mt-1 leading-snug"><b>O que vive aqui:</b> ERP, e-mail, internet, nuvem. É TI pura.</div><div class="card !p-2.5 mt-2 text-[13.5px] leading-snug" style="--accent:#DC2626"><b class="text-red-700">Ameaça típica:</b> é por onde quase todo ataque a TO começa — phishing, VPN sem MFA, fornecedor comprometido. O invasor não "nasce" na planta.</div><div class="card !p-2.5 mt-2 text-[13.5px] leading-snug" style="--accent:#059669"><b class="text-emerald-700">Controle 62443:</b> tratar como <b>zona separada e não confiável</b> do ponto de vista da TO. Nenhuma confiança implícita atravessa para baixo.</div></div>
-
-              <div data-panel="l4" class="h-full flex flex-col"><div class="font-extrabold text-[16.5px]">Nível 4 — Sistemas de negócio da planta</div><div class="text-[13.5px] mt-1 leading-snug"><b>O que vive aqui:</b> planejamento de produção, logística, gestão de ordens e relatórios gerenciais do site.</div><div class="card !p-2.5 mt-2 text-[13.5px] leading-snug" style="--accent:#DC2626"><b class="text-red-700">Ameaça típica:</b> é a ponte natural entre TI e TO — conta de domínio compartilhada, estação que acessa os dois mundos, planilha que puxa dado do <i>historian</i>.</div><div class="card !p-2.5 mt-2 text-[13.5px] leading-snug" style="--accent:#059669"><b class="text-emerald-700">Controle 62443:</b> <b>identidades e domínios separados</b> de TI, sem reuso de credencial; acesso de fornecedor só via jump server com sessão gravada.</div></div>
-
-              <div data-panel="l3h" class="h-full flex flex-col"><div class="flex items-baseline gap-2 flex-wrap"><div class="font-extrabold text-[16.5px]">Nível 3,5 — DMZ industrial</div><span class="chip amber xs">o conduíte que sustenta tudo</span></div><div class="text-[13.5px] mt-1 leading-snug"><b>O que vive aqui:</b> réplica do <i>historian</i>, jump server, servidor de patches e de antivírus, broker de dados. <b>Nenhum</b> protocolo industrial deve atravessar direto daqui.</div><div class="card !p-2.5 mt-2 text-[13.5px] leading-snug" style="--accent:#DC2626"><b class="text-red-700">Ameaça típica:</b> a "regra temporária" no firewall que virou permanente, RDP exposto e credencial de fornecedor reutilizada. Quase todo incidente grave de TO passa por aqui.</div><div class="card !p-2.5 mt-2 text-[13.5px] leading-snug" style="--accent:#059669"><b class="text-emerald-700">Controle 62443:</b> <b>conduíte único, inspecionado e documentado</b>; quebra de protocolo na borda; revisão periódica das regras; <b>data diode</b> quando o fluxo só precisa sair da planta.</div></div>
-
-              <div data-panel="l3" class="h-full flex flex-col"><div class="font-extrabold text-[16.5px]">Nível 3 — Operações do site</div><div class="text-[13.5px] mt-1 leading-snug"><b>O que vive aqui:</b> MES, <i>historian</i>, gestão de receitas e — o ativo mais crítico — as <b>estações de engenharia</b>, de onde se programa o PLC.</div><div class="card !p-2.5 mt-2 text-[13.5px] leading-snug" style="--accent:#DC2626"><b class="text-red-700">Ameaça típica:</b> a estação de engenharia é o alvo de ouro: quem a controla reprograma a planta. Foi esse o caminho do <b>Stuxnet</b>, que chegou por mídia removível.</div><div class="card !p-2.5 mt-2 text-[13.5px] leading-snug" style="--accent:#059669"><b class="text-emerald-700">Controle 62443:</b> <b>lista de aplicações permitidas</b>, bloqueio e higienização de mídia removível e <b>backup versionado da lógica</b> de cada controlador.</div></div>
-
-              <div data-panel="l2" class="h-full flex flex-col"><div class="font-extrabold text-[16.5px]">Nível 2 — Supervisão de área</div><div class="text-[13.5px] mt-1 leading-snug"><b>O que vive aqui:</b> SCADA, IHM e o sistema de alarmes — a janela pela qual o operador enxerga o processo.</div><div class="card !p-2.5 mt-2 text-[13.5px] leading-snug" style="--accent:#DC2626"><b class="text-red-700">Ameaça típica:</b> falsificar a tela do operador. O Stuxnet reproduzia leituras gravadas; na Ucrânia, o operador viu o cursor abrir os disjuntores sem conseguir impedir.</div><div class="card !p-2.5 mt-2 text-[13.5px] leading-snug" style="--accent:#059669"><b class="text-emerald-700">Controle 62443:</b> autenticação e integridade no canal de comando, <b>alarme por caminho independente</b> do SCADA e operação manual local sempre possível.</div></div>
-
-              <div data-panel="l1" class="h-full flex flex-col"><div class="flex items-baseline gap-2 flex-wrap"><div class="font-extrabold text-[16.5px]">Nível 1 — Controle básico</div><span class="chip red xs">aqui mora o SIS</span></div><div class="text-[13.5px] mt-1 leading-snug"><b>O que vive aqui:</b> PLC, RTU, DCS e os <b>SIS</b> — sistemas instrumentados de segurança (IEC 61511), que existem só para levar o processo a um estado seguro.</div><div class="card !p-2.5 mt-2 text-[13.5px] leading-snug" style="--accent:#DC2626"><b class="text-red-700">Ameaça típica:</b> o <b>TRITON</b> atacou justamente o SIS. Desligar a última barreira antes de um acidente transforma um incidente cibernético em risco de vida.</div><div class="card !p-2.5 mt-2 text-[13.5px] leading-snug" style="--accent:#059669"><b class="text-emerald-700">Controle 62443:</b> chave física em <span class="mono">RUN</span> (não em <span class="mono">PROGRAM</span>), senha de projeto, detecção de mudança de lógica e <b>SIS em zona própria</b>, separada do controle de processo.</div></div>
-
-              <div data-panel="l0" class="h-full flex flex-col"><div class="font-extrabold text-[16.5px]">Nível 0 — Processo físico</div><div class="text-[13.5px] mt-1 leading-snug"><b>O que vive aqui:</b> sensores, atuadores, válvulas, motores, bombas. É o mundo real.</div><div class="card !p-2.5 mt-2 text-[13.5px] leading-snug" style="--accent:#DC2626"><b class="text-red-700">Ameaça típica:</b> é onde o impacto deixa de ser "dado" e vira <b>físico</b>: vazamento, incêndio, equipamento destruído, gente ferida. Nenhum backup restaura isso.</div><div class="card !p-2.5 mt-2 text-[13.5px] leading-snug" style="--accent:#059669"><b class="text-emerald-700">Controle 62443:</b> a última linha é <b>mecânica</b> — válvulas de alívio e intertravamentos que funcionam sem software. E controle de acesso físico ao painel: volta o tema 7 da ISO 27002.</div></div>
-            </div>
+        <div class="card flex flex-col">
+          <div class="flex items-baseline justify-between"><div class="h3">Incidentes que definiram a área</div><span class="xs muted font-bold">de prova de conceito a ferramenta de prateleira</span></div>
+          <div class="flex flex-col gap-2.5 mt-3 flex-1 justify-evenly">
+            <div class="flex gap-3"><span class="chip red flex-none !px-2.5">2010</span><div class="small leading-snug"><b>Stuxnet</b> — alterava a rotação das centrífugas de Natanz <b>enquanto reproduzia leituras normais</b> para o operador. A primeira arma cibernética com efeito físico.</div></div>
+            <div class="flex gap-3"><span class="chip red flex-none !px-2.5">2015</span><div class="small leading-snug"><b>Ucrânia · BlackEnergy3</b> — os operadores assistiram o invasor abrir disjuntores pela própria IHM, sem conseguir impedir. Cerca de <b>225 mil pessoas</b> sem energia.</div></div>
+            <div class="flex gap-3"><span class="chip red flex-none !px-2.5">2016</span><div class="small leading-snug"><b>Industroyer / CrashOverride</b> — o primeiro malware a "falar" nativamente os protocolos elétricos (IEC 60870-5-104, IEC 61850): não precisava mais de um humano no controle.</div></div>
+            <div class="flex gap-3"><span class="chip red flex-none !px-2.5">2017</span><div class="small leading-snug"><b>TRITON / TRISIS</b> — atacou o <b>SIS</b> de uma petroquímica, o sistema instrumentado que existe só para evitar explosões. A planta parou porque o SIS entrou em falha segura.</div></div>
+            <div class="flex gap-3"><span class="chip amber flex-none !px-2.5">2021</span><div class="small leading-snug"><b>Colonial Pipeline</b> — o ataque foi <b>só na TI</b>, mas a falta de visibilidade sobre a TO obrigou a parar os dutos por precaução (slide 8).</div></div>
+            <div class="flex gap-3"><span class="chip red flex-none !px-2.5">2022</span><div class="small leading-snug"><b>Industroyer2 e PIPEDREAM</b> — ferramentas modulares, capazes de atingir PLCs de <b>vários fabricantes</b>. É a industrialização do ataque a TO.</div></div>
           </div>
         </div>
       </div>
 
-      <div class="grid grid-cols-[1.6fr_1.25fr] gap-3">
-        <div class="card-soft !py-2.5" style="--accent:#D97706">
-          <div class="text-[11.5px] font-extrabold uppercase tracking-wider text-slate-500">Normas e regulação</div>
-          <div class="text-[12.5px] leading-snug mt-1">
-            <b>IEC 62443</b> (ISA) — a referência, organizada por <b>papel</b>: <span class="mono">2-1</span> operador do ativo · <span class="mono">3-2</span> risco, zonas e condutos · <span class="mono">3-3</span> requisitos de sistema e SL 1–4 · <span class="mono">4-1/4-2</span> fabricante do produto. &nbsp;·&nbsp; <b>NIST SP 800-82 Rev. 3</b> (2023), guia de TO com <i>overlay</i> do SP 800-53 &nbsp;·&nbsp; <b>NERC CIP</b> (setor elétrico da América do Norte) &nbsp;·&nbsp; <b>NIS2</b> (UE).
-            <div class="mt-1"><b>No Brasil:</b> ONS <b>RO-CB.BR.01</b> — controles mínimos no Ambiente Regulado Cibernético (ARCiber), em vigor desde jul/2021 — e <b>REN ANEEL 964/2021</b>, que fixa a política de cibersegurança dos agentes do setor elétrico.</div>
-          </div>
-        </div>
-        <div class="card !py-2.5">
-          <div class="text-[11.5px] font-extrabold uppercase tracking-wider text-slate-500">Níveis de segurança (IEC 62443-3-3) — definidos <b>por zona</b>, conforme o adversário esperado</div>
-          <div class="grid grid-cols-4 gap-2 mt-1 text-[12px] leading-tight">
-            <div><b>SL 1</b><br><span class="muted">violação casual ou acidental</span></div>
-            <div><b>SL 2</b><br><span class="muted">meios simples, poucos recursos</span></div>
-            <div><b>SL 3</b><br><span class="muted">meios sofisticados, conhecimento de ICS</span></div>
-            <div><b>SL 4</b><br><span class="muted">recursos estendidos, alta motivação</span></div>
-          </div>
-          <div class="text-[11.5px] leading-tight text-slate-500 mt-1.5"><b>7 requisitos fundamentais:</b> identificação e autenticação · controle de uso · integridade do sistema · confidencialidade · <b>fluxo de dados restrito</b> · resposta tempestiva · disponibilidade.</div>
+      <div class="card-soft !py-3" style="--accent:#D97706">
+        <div class="flex items-center gap-2 font-extrabold small"><i data-lucide="scale" class="w-4 h-4" style="color:var(--accent)"></i> Normas e regulação</div>
+        <div class="grid grid-cols-[1.5fr_1fr_1.1fr] gap-5 mt-2 text-[13.5px] leading-snug">
+          <div><b>IEC 62443</b> (ISA) — a referência, organizada por <b>papel</b>: <span class="mono">2-1</span> programa do operador do ativo · <span class="mono">3-2</span> análise de risco, <b>zonas e condutos</b> · <span class="mono">3-3</span> requisitos de sistema e <b>níveis SL 1–4</b> · <span class="mono">4-1/4-2</span> fabricante do produto.</div>
+          <div><b>NIST SP 800-82 Rev. 3</b> (2023) — guia de segurança de TO, com <i>overlay</i> dos controles do SP 800-53.<br><b>NERC CIP</b> (setor elétrico da América do Norte) e <b>NIS2</b> (UE).</div>
+          <div><b>No Brasil:</b> ONS <b>RO-CB.BR.01</b> — controles mínimos de segurança cibernética no Ambiente Regulado Cibernético (ARCiber), em vigor desde jul/2021 — e <b>REN ANEEL 964/2021</b>, que fixa a política de cibersegurança dos agentes do setor elétrico.</div>
         </div>
       </div>
     </div>
   </div>
-  <aside class="notes" data-min="4">
-    <p><b>Arthur — Tópico adicional (requisito).</b> Justificativa da escolha: a disciplina trata de sistemas de informação; a TO é o ponto em que a segurança da informação encontra <b>segurança física e de vidas</b>, com normas próprias (IEC 62443) e regulação setorial brasileira. Conecta direto com o estudo de caso do Colonial Pipeline, do Bloco 1.</p>
-    <p>Abrir pela inversão da tríade: em TO a ordem é <b>segurança física → disponibilidade → integridade → confidencialidade</b>. Perguntar: "por que não dá para simplesmente isolar tudo da internet?" Resposta: porque o negócio precisa do dado de produção, da manutenção remota e do fornecedor — por isso existe a <b>DMZ industrial</b>, e é por ela que quase todo incidente passa.</p>
-    <p>No diagrama, começar pelo <b>nível 3,5</b> (já vem selecionado) e depois descer até o nível 0, mostrando que o impacto muda de natureza conforme se desce. Fechar no TRITON: atacar o SIS é atacar a última barreira antes do acidente.</p>
+  <aside class="notes" data-min="2">
+    <p><b>Arthur — Tópico adicional (requisito).</b> Justificativa da escolha: a disciplina trata de sistemas de informação; a TO é o ponto em que a segurança da informação encontra <b>segurança física e de vidas</b>, com normas próprias (IEC 62443) e regulação setorial brasileira. Conecta direto com o Colonial Pipeline, do Bloco 1.</p>
+    <p>Abrir pela inversão da tríade — é a ideia que mais surpreende. Em TO a ordem é <b>segurança física → disponibilidade → integridade → confidencialidade</b>: um antivírus que põe um arquivo em quarentena no meio de um batch químico é o próprio incidente.</p>
+    <p>Nos incidentes, o arco é o que importa: 2010 era operação de Estado feita sob medida; 2022 já são ferramentas modulares que funcionam em PLCs de vários fabricantes. Fechar no <b>TRITON</b>, que é o mais grave conceitualmente: atacar o SIS é desligar a última barreira antes do acidente.</p>
   </aside>
 </section>
-<!-- 27 · NOTÍCIAS -->
+
+<!-- 27 · TÓPICO ADICIONAL: MODELO PURDUE E IEC 62443 -->
+<section class="slide" data-block="b5" data-title="Tópico adicional: modelo Purdue e IEC 62443">
+  <div class="slide-inner">
+    <span class="kicker"><i data-lucide="network"></i> Tópico adicional · IEC 62443-3-2 e 62443-3-3</span>
+    <h2 class="title">Modelo Purdue: <em>zonas</em>, <em>condutos</em> e o nível de segurança de cada uma</h2>
+    <div class="slide-body flex flex-col gap-4" data-tabs="l3h">
+
+      <div class="grid grid-cols-[318px_1fr] gap-6 flex-1 min-h-0">
+        <div class="flex flex-col gap-2 layer-stack">
+          <button class="tab-btn !py-1.5" data-tab="l5" style="--accent:#2563EB"><span><b>Nível 5</b> · Corporativo</span></button>
+          <button class="tab-btn !py-1.5" data-tab="l4" style="--accent:#2563EB"><span><b>Nível 4</b> · Negócio da planta</span></button>
+          <button class="tab-btn !py-1.5" data-tab="l3h" style="--accent:#D97706"><span><b>Nível 3,5</b> · DMZ industrial</span></button>
+          <button class="tab-btn !py-1.5" data-tab="l3" style="--accent:#0284C7"><span><b>Nível 3</b> · Operações do site</span></button>
+          <button class="tab-btn !py-1.5" data-tab="l2" style="--accent:#0284C7"><span><b>Nível 2</b> · Supervisão (SCADA)</span></button>
+          <button class="tab-btn !py-1.5" data-tab="l1" style="--accent:#DC2626"><span><b>Nível 1</b> · Controle (PLC, DCS, SIS)</span></button>
+          <button class="tab-btn !py-1.5" data-tab="l0" style="--accent:#DC2626"><span><b>Nível 0</b> · Processo físico</span></button>
+          <div class="card-soft !p-2.5 mt-auto text-[13.5px] leading-snug">
+            <div class="flex items-center gap-2 font-extrabold text-[14px] mb-1"><i data-lucide="git-fork" class="w-4 h-4"></i> O vocabulário da 62443-3-2</div>
+            <div><b>Zona</b> — ativos que compartilham o mesmo requisito de segurança.</div>
+            <div class="mt-1"><b>Conduíte</b> — o <b>único</b> caminho autorizado entre duas zonas, sempre inspecionado e documentado.</div>
+          </div>
+        </div>
+
+        <div class="card flex flex-col !py-3.5 min-h-0">
+          <div data-panel="l5" class="h-full flex flex-col">
+            <div class="flex items-baseline justify-between gap-3"><div class="h3">Nível 5 — Rede corporativa</div><span class="chip blue">é TI pura</span></div>
+            <div class="card-soft !p-3 mt-3 text-[16.5px] leading-snug"><b>O que vive aqui:</b> ERP, e-mail, navegação na internet, serviços em nuvem e as estações dos times administrativos.</div>
+            <div class="card !p-3.5 mt-3 flex-1" style="--accent:#DC2626"><div class="font-extrabold text-red-700">Ameaça típica</div><p class="text-[16.5px] leading-snug mt-1">É por onde <b>quase todo ataque a TO começa</b>: phishing, VPN sem MFA, credencial de fornecedor reutilizada. O invasor não "nasce" na planta — ele desce até lá. Foi assim no Colonial Pipeline.</p></div>
+            <div class="card !p-3.5 mt-3 flex-1" style="--accent:#059669"><div class="font-extrabold text-emerald-700">Controle IEC 62443</div><p class="text-[16.5px] leading-snug mt-1">Tratar o nível 5 como <b>zona separada e não confiável</b> do ponto de vista da TO. Nenhuma confiança implícita atravessa para baixo, nem para usuários nem para serviços.</p></div>
+          </div>
+
+          <div data-panel="l4" class="h-full flex flex-col">
+            <div class="flex items-baseline justify-between gap-3"><div class="h3">Nível 4 — Sistemas de negócio da planta</div><span class="chip blue">a fronteira</span></div>
+            <div class="card-soft !p-3 mt-3 text-[16.5px] leading-snug"><b>O que vive aqui:</b> planejamento de produção, logística, gestão de ordens e os relatórios gerenciais do site.</div>
+            <div class="card !p-3.5 mt-3 flex-1" style="--accent:#DC2626"><div class="font-extrabold text-red-700">Ameaça típica</div><p class="text-[16.5px] leading-snug mt-1">É a <b>ponte natural</b> entre TI e TO: conta de domínio compartilhada, estação que acessa os dois mundos e a planilha que puxa dado do <i>historian</i> "só para o relatório".</p></div>
+            <div class="card !p-3.5 mt-3 flex-1" style="--accent:#059669"><div class="font-extrabold text-emerald-700">Controle IEC 62443</div><p class="text-[16.5px] leading-snug mt-1"><b>Identidades e domínios separados</b> de TI, sem reuso de credencial. Acesso de fornecedor apenas por jump server, com sessão gravada e janela de tempo definida.</p></div>
+          </div>
+
+          <div data-panel="l3h" class="h-full flex flex-col">
+            <div class="flex items-baseline justify-between gap-3"><div class="h3">Nível 3,5 — DMZ industrial</div><span class="chip amber">o conduíte que sustenta tudo</span></div>
+            <div class="card-soft !p-3 mt-3 text-[16.5px] leading-snug"><b>O que vive aqui:</b> réplica do <i>historian</i>, jump server, servidores de patch e de antivírus, broker de dados. <b>Nenhum</b> protocolo industrial deve atravessar direto daqui.</div>
+            <div class="card !p-3.5 mt-3 flex-1" style="--accent:#DC2626"><div class="font-extrabold text-red-700">Ameaça típica</div><p class="text-[16.5px] leading-snug mt-1">A "regra temporária" no firewall que virou permanente, o RDP exposto e a credencial de fornecedor reutilizada. <b>Quase todo incidente grave de TO passa por aqui.</b></p></div>
+            <div class="card !p-3.5 mt-3 flex-1" style="--accent:#059669"><div class="font-extrabold text-emerald-700">Controle IEC 62443</div><p class="text-[16.5px] leading-snug mt-1"><b>Conduíte único, inspecionado e documentado</b>, com quebra de protocolo na borda e revisão periódica das regras. Quando o fluxo só precisa <i>sair</i> da planta, usar <b>data diode</b>.</p></div>
+          </div>
+
+          <div data-panel="l3" class="h-full flex flex-col">
+            <div class="flex items-baseline justify-between gap-3"><div class="h3">Nível 3 — Operações do site</div><span class="chip cyan">o alvo de ouro</span></div>
+            <div class="card-soft !p-3 mt-3 text-[16.5px] leading-snug"><b>O que vive aqui:</b> MES, <i>historian</i>, gestão de receitas e — o ativo mais crítico de todos — as <b>estações de engenharia</b>, de onde se programa o PLC.</div>
+            <div class="card !p-3.5 mt-3 flex-1" style="--accent:#DC2626"><div class="font-extrabold text-red-700">Ameaça típica</div><p class="text-[16.5px] leading-snug mt-1">Quem controla a estação de engenharia <b>reprograma a planta</b>. Foi exatamente esse o caminho do Stuxnet, que chegou por mídia removível e não precisou de internet.</p></div>
+            <div class="card !p-3.5 mt-3 flex-1" style="--accent:#059669"><div class="font-extrabold text-emerald-700">Controle IEC 62443</div><p class="text-[16.5px] leading-snug mt-1"><b>Lista de aplicações permitidas</b> (allowlisting), bloqueio e higienização de mídia removível, e <b>backup versionado da lógica</b> de cada controlador — com restauração testada.</p></div>
+          </div>
+
+          <div data-panel="l2" class="h-full flex flex-col">
+            <div class="flex items-baseline justify-between gap-3"><div class="h3">Nível 2 — Supervisão de área</div><span class="chip cyan">a janela do operador</span></div>
+            <div class="card-soft !p-3 mt-3 text-[16.5px] leading-snug"><b>O que vive aqui:</b> SCADA, IHM e o sistema de alarmes — tudo aquilo por onde o operador enxerga e comanda o processo.</div>
+            <div class="card !p-3.5 mt-3 flex-1" style="--accent:#DC2626"><div class="font-extrabold text-red-700">Ameaça típica</div><p class="text-[16.5px] leading-snug mt-1"><b>Falsificar a tela do operador.</b> O Stuxnet reproduzia leituras gravadas; na Ucrânia, o operador viu o cursor abrir os disjuntores sem conseguir retomar o controle.</p></div>
+            <div class="card !p-3.5 mt-3 flex-1" style="--accent:#059669"><div class="font-extrabold text-emerald-700">Controle IEC 62443</div><p class="text-[16.5px] leading-snug mt-1">Autenticação e integridade no canal de comando, <b>alarme por caminho independente</b> do SCADA e garantia de que a operação manual local continua possível.</p></div>
+          </div>
+
+          <div data-panel="l1" class="h-full flex flex-col">
+            <div class="flex items-baseline justify-between gap-3"><div class="h3">Nível 1 — Controle básico</div><span class="chip red">aqui mora o SIS</span></div>
+            <div class="card-soft !p-3 mt-3 text-[16.5px] leading-snug"><b>O que vive aqui:</b> PLC, RTU, DCS e os <b>SIS</b> — sistemas instrumentados de segurança (IEC 61511), que existem apenas para levar o processo a um estado seguro.</div>
+            <div class="card !p-3.5 mt-3 flex-1" style="--accent:#DC2626"><div class="font-extrabold text-red-700">Ameaça típica</div><p class="text-[16.5px] leading-snug mt-1">O <b>TRITON</b> atacou justamente o SIS. Desligar a última barreira antes de um acidente transforma um incidente cibernético em risco de vida — e nenhum backup desfaz isso.</p></div>
+            <div class="card !p-3.5 mt-3 flex-1" style="--accent:#059669"><div class="font-extrabold text-emerald-700">Controle IEC 62443</div><p class="text-[16.5px] leading-snug mt-1">Chave física em <span class="mono">RUN</span> (nunca em <span class="mono">PROGRAM</span>), senha de projeto, detecção de mudança de lógica e <b>SIS em zona própria</b>, separada do controle de processo.</p></div>
+          </div>
+
+          <div data-panel="l0" class="h-full flex flex-col">
+            <div class="flex items-baseline justify-between gap-3"><div class="h3">Nível 0 — Processo físico</div><span class="chip red">o mundo real</span></div>
+            <div class="card-soft !p-3 mt-3 text-[16.5px] leading-snug"><b>O que vive aqui:</b> sensores, atuadores, válvulas, motores e bombas. É onde o software finalmente encosta na matéria.</div>
+            <div class="card !p-3.5 mt-3 flex-1" style="--accent:#DC2626"><div class="font-extrabold text-red-700">Ameaça típica</div><p class="text-[16.5px] leading-snug mt-1">Aqui o impacto deixa de ser "dado" e vira <b>físico</b>: vazamento, incêndio, equipamento destruído, gente ferida. Não existe restauração de backup para isto.</p></div>
+            <div class="card !p-3.5 mt-3 flex-1" style="--accent:#059669"><div class="font-extrabold text-emerald-700">Controle IEC 62443</div><p class="text-[16.5px] leading-snug mt-1">A última linha é <b>mecânica</b>: válvulas de alívio e intertravamentos que funcionam sem software. Mais controle de acesso físico ao painel — volta o tema 7 da ISO 27002.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-[1.45fr_1fr] gap-4">
+        <div class="card !py-3">
+          <div class="text-[12px] font-extrabold uppercase tracking-wider text-slate-500">Níveis de segurança (IEC 62443-3-3) — definidos <b>por zona</b>, conforme o adversário que se espera enfrentar</div>
+          <div class="grid grid-cols-4 gap-3 mt-2 text-[13.5px] leading-snug">
+            <div><b class="text-[15px]">SL 1</b><br><span class="muted">violação casual ou acidental</span></div>
+            <div><b class="text-[15px]">SL 2</b><br><span class="muted">meios simples, poucos recursos, motivação baixa</span></div>
+            <div><b class="text-[15px]">SL 3</b><br><span class="muted">meios sofisticados, conhecimento específico de ICS</span></div>
+            <div><b class="text-[15px]">SL 4</b><br><span class="muted">recursos estendidos e alta motivação (Estado-nação)</span></div>
+          </div>
+        </div>
+        <div class="card-soft !py-3" style="--accent:#D97706">
+          <div class="text-[12px] font-extrabold uppercase tracking-wider text-slate-500">Os 7 requisitos fundamentais (FR)</div>
+          <div class="text-[13.5px] leading-snug mt-1">identificação e autenticação · controle de uso · integridade do sistema · confidencialidade dos dados · <b>fluxo de dados restrito</b> · resposta tempestiva a eventos · disponibilidade de recursos.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes" data-min="2">
+    <p><b>Arthur.</b> O slide já abre no <b>nível 3,5</b> de propósito: a DMZ industrial é o único ponto de contato entre TI e TO e é por onde quase todo incidente grave passa.</p>
+    <p>Perguntar: <i>"por que não isolar de vez a rede industrial da internet?"</i> Resposta: porque o negócio precisa do dado de produção, da manutenção remota do fabricante e do acesso de fornecedores. O <i>air gap</i> puro praticamente não existe mais — por isso a 62443 trabalha com <b>conduto controlado</b>, e não com isolamento total.</p>
+    <p>Depois descer até o nível 0 mostrando que o <b>impacto muda de natureza</b> conforme se desce: no 5 é phishing, no 3 é a estação de engenharia (caminho do Stuxnet), no 1 está o SIS e no 0 é vazamento, incêndio e risco de vida. Fechar dizendo que o SL não é do sistema inteiro — é <b>definido por zona</b>, e é normal ter SL 2 no escritório e SL 3 na zona do SIS.</p>
+  </aside>
+</section>
+
+<!-- 28 · NOTÍCIAS -->
 <section class="slide" data-block="b5" data-title="Notícias e tendências">
   <div class="slide-inner">
     <span class="kicker"><i data-lucide="newspaper"></i> Discussão de notícias e tecnologias atuais</span>
@@ -1582,7 +1651,7 @@
   </aside>
 </section>
 
-<!-- 28 · ARTIGOS -->
+<!-- 29 · ARTIGOS -->
 <section class="slide" data-block="b5" data-title="Evolução do tema em 3 artigos">
   <div class="slide-inner">
     <span class="kicker"><i data-lucide="book-open"></i> Artigos · Evolução do tema (2010 → 2026)</span>
@@ -1628,7 +1697,7 @@
      QUESTÕES
      ===================================================================== -->
 
-<!-- 29 · INTRO QUESTÕES -->
+<!-- 30 · INTRO QUESTÕES -->
 <section class="slide" data-block="b6" data-title="Questões: como vai funcionar">
   <div class="slide-inner">
     <span class="kicker"><i data-lucide="pencil-ruler"></i> Questões ENADE · Cebraspe · autorais</span>
@@ -1661,7 +1730,7 @@
   </aside>
 </section>
 
-<!-- 30 · Q1 ENADE 2021 Q24 -->
+<!-- 31 · Q1 ENADE 2021 Q24 -->
 <section class="slide" data-block="b6" data-title="Questão 1 · ENADE 2021 (criptografia)">
   <div class="slide-inner">
     <div class="flex items-center gap-3"><span class="kicker"><i data-lucide="circle-help"></i> Questão 1 de 5</span><span class="chip">ENADE 2021 · Ciência da Computação (Bacharelado) · Questão 24</span><span class="chip">Tema: criptografia e CIA</span></div>
@@ -1705,7 +1774,7 @@
   </aside>
 </section>
 
-<!-- 31 · Q2 ZERO TRUST (AUTORAL, FORMATO CEBRASPE) -->
+<!-- 32 · Q2 ZERO TRUST (AUTORAL, FORMATO CEBRASPE) -->
 <section class="slide" data-block="b6" data-title="Questão 2 · Zero Trust e defesa em profundidade">
   <div class="slide-inner">
     <div class="flex items-center gap-3"><span class="kicker"><i data-lucide="circle-help"></i> Questão 2 de 5</span><span class="chip amber">Elaborada pela equipe · formato Cebraspe</span><span class="chip">Certo ou Errado · base: NIST SP 800-207</span></div>
@@ -1745,7 +1814,7 @@
     <p>Regra para memorizar os componentes: <b>PE decide · PA executa · PEP conecta</b>. O item 2 é a pegadinha conceitual mais comum: Zero Trust <b>soma-se</b> à segmentação, não a substitui.</p>
   </aside>
 </section>
-<!-- 32 · Q3 CEBRASPE EMBRAPA -->
+<!-- 33 · Q3 CEBRASPE EMBRAPA -->
 <section class="slide" data-block="b6" data-title="Questão 3 · Cebraspe EMBRAPA (ISO 27001/27002)">
   <div class="slide-inner">
     <div class="flex items-center gap-3"><span class="kicker"><i data-lucide="circle-help"></i> Questão 3 de 5</span><span class="chip">Cebraspe · EMBRAPA (edital 2024, aplicação 2025) · Técnico — TI · itens 69 e 70</span><span class="chip">Certo ou Errado</span></div>
@@ -1780,7 +1849,7 @@
   </aside>
 </section>
 
-<!-- 33 · Q4 ENADE 2021 Q12 -->
+<!-- 34 · Q4 ENADE 2021 Q12 -->
 <section class="slide" data-block="b6" data-title="Questão 4 · ENADE 2021 (LGPD)">
   <div class="slide-inner">
     <div class="flex items-center gap-3"><span class="kicker"><i data-lucide="circle-help"></i> Questão 4 de 5</span><span class="chip">ENADE 2021 · Ciência da Computação (Bacharelado) · Questão 12</span><span class="chip">Tema: LGPD</span></div>
@@ -1823,7 +1892,7 @@
   </aside>
 </section>
 
-<!-- 34 · Q5 CEBRASPE PCDF / ANM -->
+<!-- 35 · Q5 CEBRASPE PCDF / ANM -->
 <section class="slide" data-block="b6" data-title="Questão 5 · Cebraspe PCDF e ANM">
   <div class="slide-inner">
     <div class="flex items-center gap-3"><span class="kicker"><i data-lucide="circle-help"></i> Questão 5 de 5</span><span class="chip">Cebraspe · aplicação 2025 · PCDF (Analista de Informática) itens 105 e 108 · ANM (TI – Ciência de Dados) item 80</span></div>
@@ -1861,7 +1930,7 @@
   </aside>
 </section>
 
-<!-- 35 · BÔNUS IA -->
+<!-- 36 · BÔNUS IA -->
 <section class="slide" data-block="b6" data-title="Bônus · Regulação de IA (autoral)">
   <div class="slide-inner">
     <div class="flex items-center gap-3"><span class="kicker"><i data-lucide="sparkles"></i> Questão bônus</span><span class="chip amber">Elaborada pela equipe · formato ENADE</span><span class="chip">Tema: EU AI Act</span></div>
@@ -1901,7 +1970,7 @@
      ENCERRAMENTO
      ===================================================================== -->
 
-<!-- 36 · SÍNTESE -->
+<!-- 37 · SÍNTESE -->
 <section class="slide" data-block="b7" data-title="Síntese dos 4 pilares">
   <div class="slide-inner">
     <span class="kicker"><i data-lucide="combine"></i> Encerramento · Síntese</span>
@@ -1939,7 +2008,7 @@
   </aside>
 </section>
 
-<!-- 37 · CHECKLIST -->
+<!-- 38 · CHECKLIST -->
 <section class="slide" data-block="b7" data-title="Checklist prático">
   <div class="slide-inner">
     <span class="kicker"><i data-lucide="list-checks"></i> Encerramento · Próximos passos</span>
@@ -1985,7 +2054,7 @@
   </aside>
 </section>
 
-<!-- 38 · MESA DE CRISE -->
+<!-- 39 · MESA DE CRISE -->
 <section class="slide" data-block="b7" data-title="Atividade interativa: Mesa de Crise">
   <div class="slide-inner">
     <div class="flex items-center gap-3"><span class="kicker"><i data-lucide="siren"></i> Atividade interativa · Tabletop exercise</span><span class="chip red">A turma decide em conjunto</span></div>
@@ -1998,7 +2067,7 @@
   </aside>
 </section>
 
-<!-- 39 · REFERÊNCIAS -->
+<!-- 40 · REFERÊNCIAS -->
 <section class="slide" data-block="b7" data-title="Referências">
   <div class="slide-inner">
     <span class="kicker"><i data-lucide="library"></i> Encerramento · Referências</span>
@@ -2085,7 +2154,7 @@
     <p>Se o professor pedir, destacar as três referências que sustentam o fio condutor dos artigos (Kill Chain 2011, Zero Trust 2020, injeção indireta 2023) e as normas certificáveis (ISO 27001 e ISO 42001).</p>
   </aside>
 </section>
-<!-- 40 · Q&A -->
+<!-- 41 · Q&A -->
 <section class="slide" data-block="b7" data-title="Perguntas e respostas" data-nofoot>
   <div class="slide-inner" style="padding:64px 72px">
     <div class="absolute -left-40 -bottom-40 w-[700px] h-[700px] rounded-full" style="background:radial-gradient(circle, rgba(37,99,235,.13), transparent 65%)"></div>
