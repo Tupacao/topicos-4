@@ -177,6 +177,10 @@ html, body {
 .cq-opts button.is-right { background: #059669; color: #fff; border-color: #059669; }
 .cq-opts button.is-wrong { background: #DC2626; color: #fff; border-color: #DC2626; }
 .cq-exp { margin-top: 7px; font-size: 14.5px; color: #334155; }
+/* Reserva o espaço da explicação desde o início: assim o layout não "pula"
+   (nem estoura o slide) quando a turma responde. */
+.cq-reserve .cq { display: flex; flex-direction: column; }
+.cq-reserve .cq-exp[hidden] { display: block !important; visibility: hidden; }
 
 /* ---------- Flip cards ---------- */
 .flip { perspective: 900px; cursor: pointer; }
@@ -257,6 +261,12 @@ input[type="range"] { accent-color: var(--accent); width: 100%; cursor: pointer;
 .risk-cell.on { border-color: #0F172A; box-shadow: 0 6px 16px -6px rgba(15,23,42,.5); }
 .log { font-family: 'JetBrains Mono', monospace; font-size: 13.5px; background: #0F172A; color: #E2E8F0; border-radius: 12px; padding: 12px 14px; line-height: 1.55; }
 .log .ok { color: #6EE7B7; } .log .bad { color: #FCA5A5; } .log .warn { color: #FCD34D; } .log .dim { color: #94A3B8; }
+
+/* ---------- Mesa de Crise ---------- */
+/* O widget é montado por JS dentro do .slide-body; sem isto o conteúdo
+   fica colado no topo e o cartão do cenário não acompanha a altura. */
+[data-tabletop] { display: flex; flex-direction: column; }
+[data-tabletop] > .grid { flex: 1; min-height: 0; }
 
 /* ---------- Capa ---------- */
 .orbit { position: absolute; border-radius: 50%; border: 1.5px dashed rgba(37, 99, 235, .25); }

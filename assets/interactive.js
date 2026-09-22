@@ -1,7 +1,7 @@
 /* =========================================================
    Widgets interativos dos slides
    (abas, classificação, flip cards, matriz de risco, simulador
-   Zero Trust, demo de prompt injection, calculadora de Mosca,
+   Zero Trust, demo de prompt injection,
    questões com cronômetro, checklists e Mesa de Crise)
    ========================================================= */
 (() => {
@@ -203,33 +203,6 @@
     });
   });
 
-  /* ---------- Calculadora do Teorema de Mosca ---------- */
-  document.querySelectorAll('[data-mosca]').forEach(root => {
-    const get = k => parseInt(root.querySelector(`[data-m="${k}"]`).value, 10);
-    const out = root.querySelector('[data-mosca-out]');
-    function render() {
-      const x = get('x'), y = get('y'), z = get('z');
-      const max = Math.max(x + y, z, 1);
-      ['x', 'y', 'z'].forEach(k => {
-        root.querySelector(`[data-mv="${k}"]`).textContent = get(k) + ' anos';
-        root.querySelector(`[data-mb="${k}"]`).style.width = (get(k) / max * 100) + '%';
-      });
-      const gap = x + y - z;
-      if (gap > 0) {
-        out.style.background = '#FEF2F2'; out.style.color = '#991B1B';
-        out.innerHTML = `<b>x + y = ${x + y} &gt; z = ${z}.</b> Risco: por ~${gap} ano(s), dados capturados hoje poderão ser decifrados enquanto ainda precisam ser secretos. <b>Comece a migração agora.</b>`;
-      } else if (gap > -3) {
-        out.style.background = '#FFFBEB'; out.style.color = '#92400E';
-        out.innerHTML = `<b>x + y = ${x + y} ≈ z = ${z}.</b> Margem de apenas ${-gap} ano(s). Inicie o inventário criptográfico e a cripto-agilidade.`;
-      } else {
-        out.style.background = '#ECFDF5'; out.style.color = '#065F46';
-        out.innerHTML = `<b>x + y = ${x + y} &lt; z = ${z}.</b> Há folga de ${-gap} anos, mas as estimativas de z são incertas. Planeje sem pressa.`;
-      }
-    }
-    root.querySelectorAll('input[type=range]').forEach(r => r.addEventListener('input', render));
-    render();
-  });
-
   /* ---------- Checklists persistentes ---------- */
   document.querySelectorAll('[data-checklist]').forEach(root => {
     const key = 'check:' + root.dataset.checklist;
@@ -376,50 +349,50 @@
 
   /* ---------- Mesa de Crise (tabletop exercise) ---------- */
   const TABLETOP = {
-    intro: 'Você integra o comitê de crise da <b>PagFácil</b>, fintech brasileira regulada pelo Banco Central, com 2 milhões de clientes.',
+    intro: 'Você integra o comitê de crise da <b>PagFácil</b>, fintech brasileira regulada pelo Banco Central, com 2 milhões de clientes. São <b>23h47 de uma sexta-feira</b>.<div class="xs mt-2 text-amber-700"><b>Atenção:</b> nenhuma alternativa é absurda — todas soam profissionais. A diferença está na <b>ordem</b> das ações e no <b>fundamento</b> de cada uma.</div>',
     rounds: [
       {
-        title: 'Detecção', icon: 'siren',
-        scenario: 'O EDR dispara alertas de <b>criptografia em massa</b> nos servidores de arquivos. Em várias pastas surge uma nota: <i>"Copiamos seus dados. Paguem 30 BTC em 72 h ou publicaremos tudo."</i>',
+        title: 'Detecção e contenção', icon: 'siren',
+        scenario: 'O EDR dispara alertas de <b>criptografia em massa</b> nos servidores de arquivos. Em várias pastas surge uma nota: <i>"Copiamos seus dados. Paguem 30 BTC em 72 h ou publicaremos tudo."</i> O time de plantão é de duas pessoas.',
         question: 'Qual é a primeira ação do comitê?',
         options: [
-          { t: 'Desligar imediatamente todos os servidores e cortar a internet da empresa inteira.', s: 5, f: 'Contém, mas é drástico: destrói evidências em memória e para todo o negócio. Prefira isolamento seletivo dos segmentos afetados.' },
-          { t: 'Acionar o plano de resposta, isolar os segmentos afetados e preservar as evidências.', s: 10, f: 'Melhor resposta: contenção proporcional, cadeia de custódia e papéis já definidos (Preparação → Contenção).' },
-          { t: 'Negociar e pagar logo o resgate para evitar o vazamento.', s: 0, f: 'Pagar não garante a chave nem a exclusão dos dados, financia o crime e pode violar sanções internacionais. Nunca é a primeira ação.' },
-          { t: 'Aguardar a equipe completa na segunda-feira para avaliar com calma.', s: 0, f: 'Cada hora conta: o ransomware continua se espalhando e os prazos regulatórios já estão correndo.' }
+          { t: 'Desconectar da rede e <b>desligar</b> os servidores afetados, para interromper a criptografia agora.', s: 5, f: 'Contém de fato — mas desligar destrói a <b>memória volátil</b>, onde às vezes estão chaves de criptografia, processos e indicadores. Isole em nível de rede <b>mantendo os hosts ligados</b>.' },
+          { t: 'Acionar o plano de resposta, isolar em rede os segmentos afetados <b>sem desligar</b> os hosts e coletar memória e logs antes de qualquer remediação.', s: 10, f: 'Melhor resposta: contenção proporcional + cadeia de custódia, com papéis já definidos. É a fase de Contenção do NIST SP 800-61 feita sem queimar a evidência.' },
+          { t: 'Restaurar os servidores a partir do último backup, para devolver o serviço ao negócio o quanto antes.', s: 0, f: 'Recuperar antes de conter e erradicar: o invasor ainda tem acesso, o backup é recriptografado e a evidência do ataque se perde. A <b>ordem das fases existe por um motivo</b>.' },
+          { t: 'Acionar a seguradora cibernética e a forense contratada antes de qualquer ação técnica, para não invalidar a apólice.', s: 5, f: 'Acionar seguradora e forense está no playbook e realmente há apólices com essa cláusula — mas isso corre <b>em paralelo</b> com a contenção, nunca no lugar dela. Cada hora de espera é mais host criptografado.' }
         ]
       },
       {
-        title: 'Análise e comunicação', icon: 'megaphone',
-        scenario: 'A forense confirma: o acesso inicial foi uma <b>conta de VPN de um ex-funcionário, sem MFA</b>. Há indícios de exfiltração de <b>400 mil registros</b> com nome, CPF e saldo.',
-        question: 'Quem precisa ser comunicado?',
+        title: 'Escopo e relógio regulatório', icon: 'megaphone',
+        scenario: 'A forense confirma: o acesso inicial foi uma <b>conta de VPN de um ex-funcionário, sem MFA</b>. Há indícios — ainda não o número final — de exfiltração de cerca de <b>400 mil registros</b> com nome, CPF e saldo. Os discos estavam com criptografia em repouso ativada.',
+        question: 'Como o comitê trata o relógio regulatório?',
         options: [
-          { t: 'Somente o Banco Central, pois somos instituição regulada.', s: 5, f: 'Parcial: a LGPD também se aplica. Dados financeiros em larga escala geram risco relevante aos titulares.' },
-          { t: 'Ninguém por enquanto: só comunicamos quando tivermos 100% de certeza.', s: 0, f: 'Os prazos contam do conhecimento do incidente. A Res. CD/ANPD 15/2024 permite comunicação preliminar complementada depois.' },
-          { t: 'ANPD e titulares (3 dias úteis), Banco Central (incidente relevante) e registro de ocorrência policial.', s: 10, f: 'Melhor resposta: cumpre a LGPD (art. 48 + Res. 15/2024) e a Res. CMN 4.893, e aciona a investigação criminal.' },
-          { t: 'Publicar nota nas redes sociais negando qualquer incidente.', s: 0, f: 'Negar um incidente confirmado agrava as sanções (boa-fé e transparência são critérios de dosimetria) e destrói a confiança.' }
+          { t: 'Comunicar o Banco Central agora e decidir sobre a ANPD depois que a forense fechar o volume exato de titulares afetados.', s: 5, f: 'O BC está certo. Mas o prazo da LGPD conta do <b>conhecimento de que o incidente afetou dados pessoais</b> — e já há indício suficiente. A Res. CD/ANPD 15/2024 existe justamente para isso: comunicação preliminar agora, complemento depois.' },
+          { t: 'Comunicar ANPD e titulares em até <b>3 dias úteis</b> do conhecimento, em caráter preliminar e complementando depois; notificar o Banco Central como incidente relevante; registrar ocorrência policial.', s: 10, f: 'Melhor resposta: cumpre a LGPD (art. 48 + Res. 15/2024) e a Res. CMN 4.893 <b>em paralelo</b>, sem esperar a certeza absoluta, e ainda aciona a investigação criminal.' },
+          { t: 'Não comunicar os titulares: como os discos tinham criptografia em repouso, os dados são ininteligíveis para terceiros e a comunicação é dispensável.', s: 0, f: 'Pegadinha clássica. A criptografia <b>em repouso</b> não protege nada quando o invasor age com credenciais válidas, por dentro da aplicação — os dados saem já decifrados. A dispensa exige <b>provar</b> que os dados eram ininteligíveis para aquele invasor.' },
+          { t: 'Comunicar a ANPD dentro do prazo com o que já se sabe, mas avisar os titulares só depois da forense, para não gerar pânico com números imprecisos.', s: 5, f: 'Metade certa. A comunicação ao titular também tem prazo, e a lei não admite adiá-la por conveniência de comunicação — o titular precisa do aviso justamente para se proteger (trocar senha, monitorar o CPF).' }
         ]
       },
       {
-        title: 'Recuperação', icon: 'refresh-cw',
-        scenario: 'O ambiente foi contido e a conta de VPN, desativada. Os backups online também foram criptografados, mas existe uma <b>cópia imutável de 2 dias atrás</b>.',
+        title: 'Erradicação e recuperação', icon: 'refresh-cw',
+        scenario: 'O ambiente foi contido e a conta de VPN, desativada. Os backups online também foram criptografados, mas existe uma <b>cópia imutável de 2 dias atrás</b>. A diretoria pressiona para voltar a operar ainda hoje — e faltam 48 h de transações nessa cópia.',
         question: 'Como recuperar?',
         options: [
-          { t: 'Erradicar a persistência, reconstruir em ambiente limpo, restaurar a cópia imutável e monitorar de perto.', s: 10, f: 'Melhor resposta: erradicação antes da recuperação evita reinfecção; o backup imutável (o "1" do 3-2-1-1-0) salvou a empresa.' },
-          { t: 'Restaurar imediatamente a cópia imutável sobre os servidores atuais.', s: 5, f: 'Quase: sem remover contas, tarefas agendadas e backdoors do invasor, o risco de reinfecção é alto.' },
-          { t: 'Comprar o decryptor dos criminosos, que é mais rápido.', s: 0, f: 'Decryptors costumam ser lentos e falhos, e o pagamento não impede o vazamento. Havendo backup íntegro, não faz sentido.' },
-          { t: 'Reinstalar tudo do zero e aceitar a perda dos dados.', s: 0, f: 'Desnecessário com backup imutável — e a perda de dados pode violar obrigações regulatórias de guarda.' }
+          { t: 'Erradicar a persistência (contas criadas, tarefas agendadas, chaves de API, GPOs), reconstruir em ambiente limpo, restaurar a cópia imutável e voltar gradualmente com monitoramento reforçado.', s: 10, f: 'Melhor resposta: <b>erradicar antes de recuperar</b>. O backup imutável — o "1" do 3-2-1-1-0 — é o que salva a empresa, e as 48 h se resolvem por reprocessamento e conciliação.' },
+          { t: 'Restaurar a cópia imutável sobre os servidores atuais e, em paralelo, rodar uma varredura completa de antivírus e EDR para eliminar o que tiver sobrado.', s: 5, f: 'Quase. Varredura <b>não é erradicação</b>: o invasor pode manter credenciais válidas, tarefas agendadas e contas de serviço que nenhuma assinatura detecta. Risco alto de reinfecção em dias.' },
+          { t: 'Priorizar pelo BIA: restaurar só os sistemas críticos e manter o restante offline até o fim da investigação, reduzindo a superfície exposta.', s: 5, f: 'Priorizar pelo BIA está correto — mas a pergunta era <i>como</i>, não <i>o quê</i>. Sem erradicar primeiro, o sistema crítico restaurado é o primeiro a ser reinfectado. A <b>ordem</b> pesa mais que a seleção.' },
+          { t: 'Negociar com os criminosos apenas o <i>decryptor</i>, sem pagar pela não divulgação, para recuperar as 48 h que o backup imutável não cobre.', s: 0, f: 'Mesmo "só pelo decryptor": não há garantia de chave funcional, financia o crime, pode violar sanções internacionais e os decryptors costumam ser lentos e falhos — no Colonial Pipeline, a empresa pagou e restaurou pelo próprio backup assim mesmo.' }
         ]
       },
       {
-        title: 'Lições aprendidas', icon: 'lightbulb',
-        scenario: 'Duas semanas depois, a operação está normal. A diretoria quer <b>"encerrar o assunto"</b> e seguir em frente.',
+        title: 'Prestação de contas e lições', icon: 'lightbulb',
+        scenario: 'Duas semanas depois, a operação está normal. A ANPD abriu processo de fiscalização e pediu informações; a seguradora quer o relatório; a diretoria quer <b>"encerrar o assunto"</b>.',
         question: 'Qual é o encaminhamento adequado?',
         options: [
-          { t: 'Demitir o analista que estava de plantão na sexta-feira.', s: 0, f: 'A causa raiz foi de processo (conta órfã sem MFA), não de uma pessoa. Culpar alguém reduz a transparência em incidentes futuros.' },
-          { t: 'Comprar uma nova ferramenta de segurança e seguir em frente.', s: 5, f: 'Ferramentas ajudam, mas sem corrigir o ciclo de vida de identidades o mesmo vetor volta a funcionar.' },
-          { t: 'Arquivar o caso: a operação voltou, está resolvido.', s: 0, f: 'Sem lições aprendidas, a organização paga duas vezes pelo mesmo erro.' },
-          { t: 'Revisão pós-incidente sem culpados; MFA em todo acesso remoto, revisão de contas órfãs, testes de restauração e tabletops periódicos.', s: 10, f: 'Melhor resposta: fecha o ciclo PDCA e aplica as lições em controles concretos, em linha com o NIST CSF (ID.IM).' }
+          { t: 'Contratar uma solução de gestão de acesso privilegiado e de identidades e apresentá-la ao conselho como a resposta ao incidente.', s: 5, f: 'A ferramenta até endereça a causa (conta órfã com acesso remoto), mas sem revisar o <b>processo</b> de entrada, movimentação e saída de pessoas — e sem testar — ela vira prateleira cara. Ferramenta não é controle: controle é processo com evidência.' },
+          { t: 'Revisão pós-incidente sem busca de culpados, com causa raiz documentada, plano de ação com dono e prazo (MFA em todo acesso remoto, revisão de contas órfãs, teste de restauração), métricas de MTTD/MTTR e atualização de playbooks e da matriz de riscos.', s: 10, f: 'Melhor resposta: fecha o ciclo PDCA e converte a lição em <b>controle com dono, prazo e evidência</b> — em linha com o NIST CSF 2.0 (ID.IM) e com o que a ANPD avalia na dosimetria.' },
+          { t: 'Encerrar formalmente o caso com um relatório técnico completo para a ANPD e para a seguradora, e arquivá-lo como incidente resolvido.', s: 5, f: 'Documentar é obrigatório e a transparência conta a favor na dosimetria (Res. CD/ANPD 4/2023) — mas "arquivar" sem plano de ação é pagar duas vezes pelo mesmo erro. E o relatório precisa passar pelo jurídico antes de sair.' },
+          { t: 'Registrar a causa raiz como falha humana do analista que não revisou os acessos e reforçar o treinamento anual de conscientização.', s: 0, f: 'A causa raiz foi <b>de processo</b> — o ciclo de vida de identidades não removeu a conta. Personalizar a culpa reduz a transparência nos próximos incidentes e o treinamento anual não conserta um controle que não existe.' }
         ]
       }
     ]
@@ -443,10 +416,15 @@
         <div class="grid grid-cols-[1fr_1.25fr] gap-6">
           <div class="flex flex-col gap-3">
             <div class="card-soft small">${TABLETOP.intro}</div>
-            <div class="card flex-1">
+            <div class="card flex-1 flex flex-col">
               <div class="flex items-center gap-3"><div class="icon-box" style="--accent:#DC2626"><i data-lucide="${r.icon}"></i></div><div><div class="xs font-extrabold uppercase tracking-wider text-slate-400">Rodada ${round + 1} de ${R.length}</div><div class="h3">${r.title}</div></div></div>
               <p class="mt-3 text-[19px]">${r.scenario}</p>
               <p class="mt-3 font-extrabold text-[20px]">${r.question}</p>
+              <div class="mt-auto pt-4 grid grid-cols-3 gap-2 text-[13px] leading-snug">
+                <div class="card-soft !p-2.5" style="--accent:#059669"><b class="text-emerald-700">10 pontos</b><br><span class="muted">a melhor resposta: ordem correta e fundamento explícito</span></div>
+                <div class="card-soft !p-2.5" style="--accent:#D97706"><b class="text-amber-700">5 pontos</b><br><span class="muted">defensável, mas com custo — de evidência, de prazo ou de risco</span></div>
+                <div class="card-soft !p-2.5" style="--accent:#DC2626"><b class="text-red-700">0 ponto</b><br><span class="muted">agrava a crise ou a exposição regulatória</span></div>
+              </div>
             </div>
           </div>
           <div class="flex flex-col gap-2">
@@ -455,7 +433,7 @@
               if (answered !== null) cls = o.s === 10 ? 'right' : i === answered ? (o.s === 5 ? 'sel' : 'wrong') : 'dim';
               return `<button class="opt ${cls} !text-[17px]" data-i="${i}"><span class="opt-letter">${letters[i]}</span><span>${o.t}${answered !== null && (i === answered || o.s === 10) ? `<span class="block xs mt-1 ${o.s === 10 ? 'text-emerald-700' : o.s === 5 ? 'text-blue-700' : 'text-red-700'}"><b>${o.s} pts.</b> ${o.f}</span>` : ''}</span></button>`;
             }).join('')}
-            <div class="flex justify-end mt-1">${answered !== null ? `<button class="btn primary" data-next-round>${round + 1 < R.length ? 'Próxima rodada' : 'Ver resultado'} <i data-lucide="arrow-right"></i></button>` : '<span class="hint"><i data-lucide="vote"></i> a turma vota; clique na opção escolhida</span>'}</div>
+            <div class="flex justify-end mt-1">${answered !== null ? `<button class="btn primary" data-next-round>${round + 1 < R.length ? 'Próxima rodada' : 'Ver resultado'} <i data-lucide="arrow-right"></i></button>` : '<span class="hint"><i data-lucide="vote"></i> a turma vota e a opção escolhida é marcada</span>'}</div>
           </div>
         </div>`;
       icons();

@@ -19,13 +19,13 @@ Abra `index.html` no navegador (Chrome/Edge). É preciso internet para carregar 
 | `H` | Ajuda, chance atual da surpresa e botão de teste |
 
 - O slide atual fica salvo: ao recarregar a página você continua no mesmo slide (também dá para usar `index.html#/12`).
-- As questões (oficiais do ENADE 2021, POSCOMP 2011 e Cebraspe, com gabarito oficial, mais uma bônus da equipe) têm cronômetro configurável de 15 s a 5 min.
+- As questões (quatro oficiais do ENADE 2021 e do Cebraspe, com gabarito oficial, mais duas elaboradas pela equipe) têm cronômetro configurável de 15 s a 5 min.
 - O tempo estimado de cada slide aparece só nas notas (`N`) e na visão geral (`O`).
 - O cronômetro geral da apresentação fica na barra inferior.
 
 ## Imagem surpresa
 
-A cada avanço de slide existe uma chance de aparecer uma imagem aleatória da pasta `images/`. A chance começa em 5%, sobe 5% a cada avanço sem imagem e volta para 5% quando a imagem aparece. "Continuar" ou "Voltar" (ou qualquer seta) levam ao slide que estava na fila.
+A cada avanço de slide existe uma chance de aparecer uma imagem aleatória da pasta `images/`. A chance começa em 5%, sobe 0,5% a cada avanço sem imagem e volta para 5% quando a imagem aparece. "Continuar" ou "Voltar" (ou qualquer seta) levam ao slide que estava na fila.
 
 Para usar suas imagens:
 
@@ -37,9 +37,9 @@ O navegador não consegue listar uma pasta sozinho, por isso o script gera o `im
 
 ## Estrutura
 
-- `index.html` — os 39 slides e as notas do apresentador (`<aside class="notes" data-min="…">`)
+- `index.html` — os 40 slides e as notas do apresentador (`<aside class="notes" data-min="…">`)
 - `assets/app.js` — navegação, persistência, notas, visão geral, cronômetro e surpresa
-- `assets/interactive.js` — widgets (abas, mini-jogos, simulador Zero Trust, demo de prompt injection, calculadora de Mosca, questões, Mesa de Crise)
+- `assets/interactive.js` — widgets (abas, mini-jogos, simulador Zero Trust, demo de prompt injection, questões, Mesa de Crise)
 - `assets/style.css` — tema visual
 
 ## Roteiro

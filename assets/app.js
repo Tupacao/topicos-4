@@ -41,7 +41,7 @@
   const $ = id => document.getElementById(id);
 
   // ---------- Surpresa: configuração ----------
-  const CHANCE_START = 0.5;   // %
+  const CHANCE_START = 5;   // %
   const CHANCE_STEP = 0.5;    // % acumulado por avanço sem surpresa
   const IMAGES = (Array.isArray(window.RANDOM_IMAGES) ? window.RANDOM_IMAGES : []).filter(Boolean);
   let chance = Number(store.get('chance', CHANCE_START)) || CHANCE_START;
