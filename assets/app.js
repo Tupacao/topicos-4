@@ -41,7 +41,7 @@
   const $ = id => document.getElementById(id);
 
   // ---------- Surpresa: configuração ----------
-  const CHANCE_START = 5;   // %
+  const CHANCE_START = 1;   // %
   const CHANCE_STEP = 0.5;    // % acumulado por avanço sem surpresa
   const IMAGES = (Array.isArray(window.RANDOM_IMAGES) ? window.RANDOM_IMAGES : []).filter(Boolean);
   let chance = Number(store.get('chance', CHANCE_START)) || CHANCE_START;
@@ -204,7 +204,7 @@
   function renderNotes() {
     const s = slides[idx];
     const n = s.querySelector('.notes');
-    drawer.innerHTML = `<h4><span>Slide ${idx + 1} · ${s.dataset.title || ''}</span><span>⏱ ~${fmtMin(minutesOf(s))} min</span><span>Planejado até aqui: ${fmtMin(cumulativeMin(idx))} de ${fmtMin(totalMin)} min</span><span>Decorrido: ${fmtClock(elapsed())}</span></h4>${n ? n.innerHTML : '<p>Sem notas.</p>'}`;
+    drawer.innerHTML = `<h4><span>Slide ${idx + 1} · ${s.dataset.title || ''}</span><span>⏱ ~${fmtMin(minutesOf(s))} min</span><span>Planejado até aqui: ${fmtMin(cumulativeMin(idx))} de ${fmtMin(totalMin)} min</span></h4>${n ? n.innerHTML : ''}`;
     drawer.classList.toggle('show', notesOpen);
     $('btn-notes').classList.toggle('on', notesOpen);
   }
